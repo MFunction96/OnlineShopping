@@ -12,11 +12,6 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="lib/tether/dist/css/tether-theme-arrows-dark.min.css" />
-  <link rel="stylesheet" href="lib/tether/dist/css/tether-theme-arrows.min.css" />
-  <link rel="stylesheet" href="lib/tether/dist/css/tether-theme-basic.min.css" />
-  <link rel="stylesheet" href="lib/tether/dist/css/tether.min.css" />
   <title>@ViewData["Title"] - MFBlog</title>
 </head>
 <body>
@@ -57,10 +52,7 @@
     <p id="ServerTime"></p>
   </footer>
 </div>
-<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="lib/tether/dist/js/tether.min.js"></script>
-<script type="text/javascript" src="js/site.js"></script>
+<script type="text/javascript" src="dist/bundle.js"></script>
 <script>queryTime()</script>
 </body>
 </html>

@@ -21,9 +21,16 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Bower Installed Lib
+# Bower Installed Library
 web/lib
+
+# NPM Installed Library
+node_modules
 
 # Intellij IDEA Directory
 .idea
 out
+target
+
+# Webpack Output Folder
+web/dist
