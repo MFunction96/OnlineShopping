@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xyz.mfbrain.onlineshopping</groupId>
-    <artifactId>OnlineShopping</artifactId>
+    <artifactId>mfbrain-online-shopping</artifactId>
     <version>1.0.0</version>
     <dependencies>
         <dependency>
@@ -23,7 +23,7 @@
                 <configuration>
                     <source>10</source>
                     <target>10</target>
-                    <outputFileName>测试</outputFileName>
+                    <outputFileName>tests</outputFileName>
                 </configuration>
             </plugin>
         </plugins>
