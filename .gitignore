@@ -27,10 +27,18 @@ web/lib
 # NPM Installed Library
 node_modules
 
-# Intellij IDEA Directory
+# Intellij IDEA Folder
 .idea
 out
 target
 
 # Webpack Output Folder
 web/dist
+
+# VSCode Config
+.vscode
+.settings
+
+# Eclipse File
+.project
+.classpath

@@ -94,4 +94,4 @@ create table tore
    sdesc                varchar(256)                   not null,
    constraint PK_STORE primary key (sid),
    constraint FK_STORE_REFERENCE_USER foreign key (uid) references User (uid)
-);S
+);
