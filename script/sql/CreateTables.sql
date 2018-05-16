@@ -1,97 +1,88 @@
 /*==============================================================*/
+/* Table: Account                                               */
+/*==============================================================*/
+create table Account
+(
+   ac_id                nvarchar(40)                    not null,
+   ac_name              nvarchar(256)                   not null,
+   ac_password          nvarchar(32)                    not null,
+   ac_sex               nvarchar(4)                     not null,
+   ac_birthday          date                           not null,
+   ac_phone             nvarchar(20)                    not null,
+   ac_address           nvarchar(256)                   not null,
+   ac_role              integer                        not null,
+   constraint PK_ACCOUNT primary key clustered (ac_id)
+  );
+
+/*==============================================================*/
 /* Table: Dish                                                  */
 /*==============================================================*/
-create table Dish 
+create table Dish
 (
-   did                  varchar(40)                    not null,
-   dname                varchar(256)                   not null,
-   dprice               decimal                        not null,
-   ddesc                varchar(256)                   not null,
-   dimage               varchar(256)                   not null,
-   dstatus              integer                        not null,
-   constraint PK_DISH primary key clustered (did)
+   di_id                nvarchar(40)                    not null,
+   di_name              nvarchar(256)                   not null,
+   di_price             decimal                        not null,
+   di_desc              nvarchar(256)                   not null,
+   di_image             nvarchar(256)                   not null,
+   di_status            integer                        not null,
+   constraint PK_DISH primary key clustered (di_id)
 );
 
 /*==============================================================*/
-/* Table:  Order                                                */
+/* Table: Indent                                                */
 /*==============================================================*/
-create table Order 
+create table Indent
 (
-   oid                  varchar(40)                    not null,
-   customid             varchar(40)                    not null,
-   ordertime            timestamp                      not null,
-   totalprice           decimal                        not null,
-   discription          varchar(256)                   not null,
-   remark               varchar(256)                   not null,
-   ostatus              varchar(10)                    not null,
-   constraint PK_ORDER primary key clustered (oid),
-   constraint FK_ORDER_REFERENCE_USER foreign key (customid) references User(uid)
+   in_id                nvarchar(40)                    not null,
+   customerid           nvarchar(40)                    not null,
+   in_ordertime         timestamp                      not null,
+   in_totalprice        decimal                        not null,
+   in_diesc             nvarchar(256)                   not null,
+   in_remark            nvarchar(256)                   not null,
+   in_status            nvarchar(10)                    not null,
+   constraint PK_INDENT primary key clustered (in_id),
+   constraint FK_INDENT_REFERENCE_ACCOUNT foreign key (customerid) references Account (ac_id)
 );
 
 /*==============================================================*/
-/* Table: OrderItem                                             */
+/* Table: IndentItem                                            */
 /*==============================================================*/
-create table OrderItem 
+create table IndentItem
 (
-   oiid                 varchar(40)                    not null,
-   dishid               varchar(40)                    not null,
-   ammount              integer                        not null,
-   orderid              varchar(40)                    not null,
-   constraint PK_ORDERITEM primary key clustered (oiid),
-   constraint FK_ORDERITE_REFERENCE_ORDER foreign key (orderid) references Order(oid),
-   constraint FK_ORDERITE_REFERENCE_DISH foreign key (dishid) references Dish(did)
+   it_id                nvarchar(40)                    not null,
+   di_id                nvarchar(40)                    not null,
+   it_ammount           integer                        not null,
+   it_totalprice        decimal                        not null,
+   in_id                nvarchar(40)                    not null,
+   constraint PK_INDENTITEM primary key clustered (it_id),
+constraint FK_INDENTIT_REFERENCE_INDENT foreign key (in_id) references Indent (in_id),
+constraint FK_INDENTIT_REFERENCE_DISH foreign key (di_id) references Dish (di_id)
 );
 
 /*==============================================================*/
-/* Table: User                                                  */
+/* Table: Store                                                 */
 /*==============================================================*/
-create table User 
+create table Store
 (
-   uid                  varchar(40)                    not null,
-   uname                varchar(256)                   not null,
-   upassword            varchar(32)                    not null,
-   usex                 varchar(4)                     not null,
-   ubirthday            date                           not null,
-   uphone               varchar(20)                    not null,
-   uaddress             varchar(256)                   not null,
-   urole                integer                        not null,
-   constraint PK_USER primary key clustered (uid)
+   st_id                nvarchar(40)                    not null,
+   ac_id                nvarchar(40)                    not null,
+   st_name              nvarchar(256)                   not null,
+   st_phone             nvarchar(20)                    not null,
+   st_desc              nvarchar(256)                   not null,
+   constraint PK_STORE primary key (st_id),
+constraint FK_STORE_REFERENCE_ACCOUNT foreign key (ac_id) references Account (ac_id)
 );
 
 /*==============================================================*/
 /* Table: Commodit                                              */
 /*==============================================================*/
-create table Commodit 
+create table Commodit
 (
-   sid                  varchar(40)                    not null,
-   did                  varchar(40)                    not null,
-   constraint PK_COMMODIT primary key clustered (sid, did),
-   constraint FK_COMMODIT_REFERENCE_STORE foreign key (sid) references store(sid),
-   constraint FK_COMMODIT_REFERENCE_DISH foreign key (did) references Dish(did)
+   st_id                nvarchar(40)                    not null,
+   di_id                nvarchar(40)                    not null,
+   constraint PK_COMMODIT primary key clustered (st_id, di_id),
+constraint FK_COMMODIT_REFERENCE_STORE foreign key (st_id) references Store (st_id),
+constraint FK_COMMODIT_REFERENCE_DISH foreign key (di_id) references Dish (di_id)
 );
 
-/*==============================================================*/
-/* Table: Sorelation                                            */
-/*==============================================================*/
-create table Sorelation 
-(
-   oid                  varchar(40)                    not null,
-   sid                  varchar(40)                    not null,
-   constraint PK_SORELATION primary key clustered (oid, sid),
-   constraint FK_SORELATI_REFERENCE_ORDER foreign key (oid) references Order(oid),
-   constraint FK_SORELATI_REFERENCE_STORE foreign key (sid) references store (sid)
-);
 
-/*==============================================================*/
-/* Table: store                                                 */
-/*==============================================================*/
-create table tore
-(
-   sid                  varchar(40)                    not null,
-   uid                  varchar(40)                    not null,
-   sname                varchar(256)                   not null,
-   sphone               varchar(20)                    not null,
-   sdesc                varchar(256)                   not null,
-   constraint PK_STORE primary key (sid),
-   constraint FK_STORE_REFERENCE_USER foreign key (uid) references User (uid)
-);
