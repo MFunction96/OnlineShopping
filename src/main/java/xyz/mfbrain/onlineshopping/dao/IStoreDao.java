@@ -1,5 +1,9 @@
 package xyz.mfbrain.onlineshopping.dao;
 
+import xyz.mfbrain.onlineshopping.bean.StoreBean;
+
+import java.util.ArrayList;
+
 /**
  * @program: OnlineShopping
  * @description: 数据库商铺操作
@@ -8,4 +12,15 @@ package xyz.mfbrain.onlineshopping.dao;
  **/
 
 public interface IStoreDao {
+    public ArrayList<StoreBean> findAllStore();
+
+    public StoreBean findStoreByName(String name);
+
+    public boolean addStore(StoreBean store);
+
+    public boolean modifyStoreInfor(StoreBean store);
+
+    public boolean deleteStoreByID(String id);
+
+    public int getStoreNum();
 }
