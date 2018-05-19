@@ -34,6 +34,7 @@ create table Dish
 create table Indent
 (
    in_id                nvarchar(40)                    not null,
+   st_id                nvarchar(40)                    not null,
    customerid           nvarchar(40)                    not null,
    in_ordertime         timestamp                      not null,
    in_totalprice        decimal                        not null,
@@ -41,7 +42,8 @@ create table Indent
    in_remark            nvarchar(256)                   not null,
    in_status            nvarchar(10)                    not null,
    constraint PK_INDENT primary key clustered (in_id),
-   constraint FK_INDENT_REFERENCE_ACCOUNT foreign key (customerid) references Account (ac_id)
+   constraint FK_INDENT_REFERENCE_ACCOUNT foreign key (customerid) references Account (ac_id),
+   constraint FK_INDENT_REFERENCE_STORE foreign key (st_id) references  Store(st_id)
 );
 
 /*==============================================================*/

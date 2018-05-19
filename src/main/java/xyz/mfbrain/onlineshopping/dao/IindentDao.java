@@ -2,6 +2,8 @@ package xyz.mfbrain.onlineshopping.dao;
 
 import xyz.mfbrain.onlineshopping.bean.IndentBean;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +14,9 @@ import java.util.ArrayList;
  **/
 
 public interface IindentDao {
-    public ArrayList<IndentBean> findAllIndents();
+    public ArrayList<IndentBean> findAllIndents(String stid);
 
-    public ArrayList<IndentBean> findAllIndentsByDate();
+    public ArrayList<IndentBean> findAllIndentsByDate(String startDate,String endDate,String id);
 
     public IndentBean findIndentByID(String id);
 
@@ -24,5 +26,9 @@ public interface IindentDao {
 
     public boolean modifyIndentRemark(String id,String remark);
 
-    public boolean deleteIndent(String id);
+    public int getIndentNumByStoreId(String stid);
+
+    public int getIndentNumByDate(String startDate,String endDate,String stid);
+
+    public boolean deleteIndent(String inid);
 }
