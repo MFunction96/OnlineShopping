@@ -15,6 +15,8 @@ public interface IAccountDao {
 
     public AccountBean findAccountById(String id);
 
+    public AccountBean findAccountByName(String name);
+
     public boolean addAccount(AccountBean account);
 
     public boolean modifyAccount(AccountBean account);

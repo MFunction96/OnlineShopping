@@ -42,6 +42,19 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
     }
 
     @Override
+    public AccountBean findAccountByName(String name) {
+        AccountBean accountBean=null;
+        String sql="select ac_id AcId,ac_name AcName,ac_sex AcSex,ac_birthday AcBirthday,ac_phone AcPhone,ac_address AcAddress,ac_role AcRole from Account where ac_name=?";
+        Object [] params={name};
+        try {
+            accountBean=(AccountBean)this.findObjectWithConditions(sql,params,AccountBean.class);
+        } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
+        return accountBean;
+    }
+
+    @Override
     public boolean addAccount(AccountBean account) {
         int result=0;
         String sql="insert into Account values(?,?,?,?,?,?,?,?)";

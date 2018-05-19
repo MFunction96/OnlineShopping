@@ -63,6 +63,19 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     }
 
     @Override
+    public ArrayList<DishBean> findDishByName(String name) {
+        ArrayList<DishBean> dishes=null;
+        String sql="select di_id DiId,di_name DiName,di_price DiPrice ,di_image DiImage,di_status DiStatus from Dish where di_name="+name;
+        try {
+            dishes=this.findAllObject(sql,DishBean.class);
+        } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        return dishes;
+    }
+
+    @Override
     public boolean addDish(DishBean dish, String stid) {
         int result1=0;
         int result2=0;
