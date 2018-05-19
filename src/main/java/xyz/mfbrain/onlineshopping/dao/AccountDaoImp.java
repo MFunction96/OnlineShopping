@@ -44,7 +44,7 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
     @Override
     public boolean addAccount(AccountBean account) {
         int result=0;
-        String sql="insert into account values(?,?,?,?,?,?,?,?)";
+        String sql="insert into Account values(?,?,?,?,?,?,?,?)";
         Object [] params={account.getAcId(),account.getAcPassword(),account.getAcName(),account.getAcSex(),account.getAcBirthday(),account.getAcPhone(), account.getAcAddress(),account.getAcRole()};
         try {
             result=this.modifyObjectInformation(sql,params);

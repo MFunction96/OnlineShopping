@@ -13,5 +13,6 @@ public class JDBCUtilsTest {
 
     @Test
     public void getConnection() {
+        assertNotNull(JDBCUtils.getJdbc_ustils().getConnection());
     }
 }

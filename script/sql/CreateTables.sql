@@ -55,7 +55,7 @@ create table IndentItem
    it_totalprice        decimal                        not null,
    in_id                nvarchar(40)                    not null,
    constraint PK_INDENTITEM primary key clustered (it_id),
-constraint FK_INDENTIT_REFERENCE_INDENT foreign key (in_id) references Indent (in_id),
+constraint FK_INDENTIT_REFERENCE_INDENT foreign key (in_id) references Indent (in_id) on delete cascade,
 constraint FK_INDENTIT_REFERENCE_DISH foreign key (di_id) references Dish (di_id)
 );
 
@@ -70,7 +70,7 @@ create table Store
    st_phone             nvarchar(20)                    not null,
    st_desc              nvarchar(256)                   not null,
    constraint PK_STORE primary key (st_id),
-constraint FK_STORE_REFERENCE_ACCOUNT foreign key (ac_id) references Account (ac_id)
+constraint FK_STORE_REFERENCE_ACCOUNT foreign key (ac_id) references Account (ac_id) on delete cascade
 );
 
 /*==============================================================*/
@@ -81,8 +81,8 @@ create table Commodit
    st_id                nvarchar(40)                    not null,
    di_id                nvarchar(40)                    not null,
    constraint PK_COMMODIT primary key clustered (st_id, di_id),
-constraint FK_COMMODIT_REFERENCE_STORE foreign key (st_id) references Store (st_id),
-constraint FK_COMMODIT_REFERENCE_DISH foreign key (di_id) references Dish (di_id)
+constraint FK_COMMODIT_REFERENCE_STORE foreign key (st_id) references Store (st_id) on delete cascade,
+constraint FK_COMMODIT_REFERENCE_DISH foreign key (di_id) references Dish (di_id) on delete cascade
 );
 
 

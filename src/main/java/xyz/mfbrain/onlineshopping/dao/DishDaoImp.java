@@ -5,6 +5,7 @@ import xyz.mfbrain.onlineshopping.bean.DishBean;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.function.ObjDoubleConsumer;
 
 /**
  * @program: OnlineShopping
@@ -13,10 +14,10 @@ import java.util.ArrayList;
  * @create: 2018-05-17 14:33
  **/
 
-public class DishDao extends BaseDao implements IdishDao {
+public class DishDaoImp extends BaseDao implements IdishDao {
 
     @Override
-    public ArrayList<DishBean> findAllDishinOrder(int order, String stid) {
+    public ArrayList<DishBean> findAllDishInOrder(int order, String stid) {
         ArrayList<DishBean> dishBeans=null;
         String sql="select di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
                 "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where Commodit.st_id="+stid;
@@ -63,21 +64,55 @@ public class DishDao extends BaseDao implements IdishDao {
 
     @Override
     public boolean addDish(DishBean dish, String stid) {
-        return false;
+        int result1=0;
+        int result2=0;
+        String sql1="insert into Dish values(?,?,?,?,?,?)";
+        Object params1[]={dish.getDiId(),dish.getDiName(),dish.getDiPrice(),dish.getDiDesc(),dish.getDiImage(),dish.getDiStatus()};
+        String sql2="insert into Commodit values(?,?)";
+        Object params2[]={stid,dish.getDiId()};
+        try {
+            result1=this.modifyObjectInformation(sql1,params1);
+            result2=this.modifyObjectInformation(sql2,params2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result1==1&&result2==1;
     }
 
     @Override
     public boolean modifyDish(DishBean dish, String stid) {
-        return false;
+        int result=0;
+        String sql="update Dish set di_name=?,di_price=?,di_desc=?,di_image=?,di_status=? where di_id=?";
+        Object [] params={dish.getDiName(),dish.getDiPrice(),dish.getDiDesc(),dish.getDiImage(),dish.getDiStatus(),dish.getDiId()};
+        try {
+            result=this.modifyObjectInformation(sql,params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result==1;
     }
 
     @Override
     public boolean deleteDish(String diid, String stid) {
-        return false;
+        int result=0;
+        String sql="delete from Dish where di_id="+diid;
+        try {
+            result=this.deleteObject(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result==1;
     }
 
     @Override
-    public int getDishNum() {
-        return 0;
+    public int getDishNum(String stid) {
+        int count=0;
+        String sql="select count(*) from Commodit where st_id="+stid;
+        try {
+            count=this.getTotalObjectsNum(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 }
