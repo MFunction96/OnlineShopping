@@ -19,7 +19,7 @@ public class StoreService {
     private IStoreDao storeDao;
 
     public StoreService(){
-        String key="xyz.mfbrain.onlineshopping.dao.StoreDaoImp";
+        String key="StoreDao";
         try {
             storeDao=(StoreDaoImp)DAOFactory.getDaoFactory().newInstance(key);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {

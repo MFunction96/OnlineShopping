@@ -19,7 +19,7 @@ public class UserService {
     private IAccountDao accountDao;
 
     public UserService(){
-        String key="xyz.mfbrain.onlineshopping.dao.AccountDaoImp";
+        String key="AccountDao";
         try {
             accountDao=(AccountDaoImp)DAOFactory.getDaoFactory().newInstance(key);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {

@@ -19,7 +19,7 @@ public class DishService {
     private IdishDao dishDao;
 
     public DishService(){
-        String key="xyz.mfbrain.onlineshopping.dao.DishDaoImp";
+        String key="DishDao";
         try {
             dishDao=(DishDaoImp)DAOFactory.getDaoFactory().newInstance(key);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
