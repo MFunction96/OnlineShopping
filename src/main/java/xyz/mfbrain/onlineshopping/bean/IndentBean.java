@@ -6,14 +6,14 @@ import java.sql.Timestamp;
 
 public class IndentBean {
 
-  private String inId;
-  private String customerid;
-  private String stId;
-  private Timestamp inOrdertime;
-  private BigDecimal inTotalprice;
-  private String inDesc;
-  private String inRemark;
-  private String inStatus;
+  private String inId=" ";
+  private String customerid=" ";
+  private String stId=" ";
+  private Timestamp inOrdertime=Timestamp.valueOf("1870-1-1 0:0:0");
+  private BigDecimal inTotalprice=BigDecimal.valueOf(0);
+  private String inDesc=" ";
+  private String inRemark=" ";
+  private String inStatus=" ";
 
 
   public String getInId() {

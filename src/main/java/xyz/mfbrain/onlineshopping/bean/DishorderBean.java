@@ -12,16 +12,16 @@ import java.util.Objects;
  **/
 
 public class DishorderBean {
-    private String inId;
-    private String customerid;
-    private String acName;
-    private BigDecimal inTotalprice;
-    private String inDesc;
-    private String inRemark;
-    private String inStatus;
-    private String acPhone;
-    private String acAddress;
-    private Timestamp inOrdertime;
+    private String inId=" ";
+    private String customerid=" ";
+    private String acName=" ";
+    private BigDecimal inTotalprice=BigDecimal.valueOf(0);
+    private String inDesc=" ";
+    private String inRemark=" ";
+    private String inStatus=" ";
+    private String acPhone=" ";
+    private String acAddress=" ";
+    private Timestamp inOrdertime=Timestamp.valueOf("1870-1-1 0:0:0");
 
     public String getInId() {
         return inId;

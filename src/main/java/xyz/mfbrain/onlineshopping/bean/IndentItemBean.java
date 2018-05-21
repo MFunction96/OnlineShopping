@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 
 public class IndentItemBean {
 
-  private String itId;
-  private String diId;
-  private long itAmmount;
-  private BigDecimal itTotalprice;
-  private String inId;
+  private String itId=" ";
+  private String diId=" ";
+  private long itAmmount=0;
+  private BigDecimal itTotalprice=BigDecimal.valueOf(0);
+  private String inId=" ";
 
 
   public String getItId() {

@@ -1,5 +1,6 @@
 package xyz.mfbrain.onlineshopping.bean;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -10,13 +11,13 @@ import java.util.Objects;
  **/
 
 public class OrderitemBean {
-    private String inId;
-    private String itId;
-    private String diId;
-    private String diImage;
-    private String diName;
-    private int itAmmount;
-    private int itTotalprice;
+    private String inId=" ";
+    private String itId=" ";
+    private String diId=" ";
+    private String diImage=" ";
+    private String diName=" ";
+    private int itAmmount=0;
+    private BigDecimal itTotalprice=BigDecimal.valueOf(0);
 
     public String getInId() {
         return inId;
@@ -66,11 +67,11 @@ public class OrderitemBean {
         this.itAmmount = itAmmount;
     }
 
-    public int getItTotalprice() {
+    public BigDecimal getItTotalprice() {
         return itTotalprice;
     }
 
-    public void setItTotalprice(int itTotalprice) {
+    public void setItTotalprice(BigDecimal itTotalprice) {
         this.itTotalprice = itTotalprice;
     }
 

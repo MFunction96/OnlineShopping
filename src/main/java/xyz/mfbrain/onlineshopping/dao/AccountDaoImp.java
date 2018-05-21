@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 /**
  * @program: myshop
- * @description: 用户管理模块基础实现类
+ * @description: 数据库账户表操作类
  * @author: ChrisYoung
  * @create: 2018-05-16 22:00
  **/

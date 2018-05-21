@@ -5,14 +5,14 @@ import java.sql.Date;
 
 public class AccountBean {
 
-  private String acId;
-  private String acName;
-  private String acPassword;
-  private String acSex;
-  private Date acBirthday;
-  private String acPhone;
-  private String acAddress;
-  private long acRole;
+  private String acId=" ";
+  private String acName=" ";
+  private String acPassword=" ";
+  private String acSex=" ";
+  private Date acBirthday=Date.valueOf("1870-1-1");
+  private String acPhone=" ";
+  private String acAddress=" ";
+  private long acRole=0;
 
 
   public String getAcId() {
