@@ -10,10 +10,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public abstract class BaseDao {
-    Statement st=null;
-    Connection con=null;
-    ResultSet resultSet=null;
-    PreparedStatement ps=null;
+    private Statement st;
+    private Connection con;
+    private ResultSet resultSet;
+    private PreparedStatement ps;
 
     public Object mappingObject(ResultSet rs, Class cl) throws IllegalAccessException, InstantiationException, SQLException, InvocationTargetException {
         Object obj=cl.newInstance();

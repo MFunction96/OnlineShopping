@@ -8,12 +8,17 @@ import java.util.ArrayList;
 
 /**
  * @program: OnlineShopping
- * @description:
+ * @description:商铺数据库操作
  * @author: ChrisYoung
  * @create: 2018-05-17 22:38
  **/
 
 public class StoreDaoImp extends BaseDao implements IStoreDao {
+
+    /**
+     * 显示所有商铺
+     * @return 商铺链表
+     */
     @Override
     public ArrayList<StoreBean> findAllStore() {
         ArrayList<StoreBean> stores=null;
@@ -26,6 +31,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
         return stores;
     }
 
+    /**
+     * 根据名称查找商铺
+     * @param name 商铺名称
+     * @return 相应商铺
+     */
     @Override
     public StoreBean findStoreByName(String name) {
         StoreBean store=null;
@@ -40,6 +50,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
         return store;
     }
 
+    /**
+     * 添加商铺
+     * @param store 新的商铺
+     * @return 添加结果
+     */
     @Override
     public boolean addStore(StoreBean store) {
         int result=0;
@@ -53,6 +68,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
         return result==1;
     }
 
+    /**
+     * 修改商铺信息
+     * @param store 包含修改过的商铺信息的商铺对象
+     * @return 修改结果
+     */
     @Override
     public boolean modifyStoreInfor(StoreBean store) {
         int result=0;
@@ -66,6 +86,12 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
         return result==1;
     }
 
+
+    /**
+     * 删除商户
+     * @param id 商户编号
+     * @return
+     */
     @Override
     public boolean deleteStoreByID(String id) {
         int result=0;
@@ -78,6 +104,10 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
         return result==1;
     }
 
+    /**
+     * 获得商铺数量
+     * @return 返回商铺数量
+     */
     @Override
     public int getStoreNum() {
         int count=0;

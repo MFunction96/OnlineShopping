@@ -8,12 +8,18 @@ import java.util.ArrayList;
 
 /**
  * @program: OnlineShopping
- * @description:
+ * @description:显示订单项
  * @author: ChrisYoung
  * @create: 2018-05-19 10:26
  **/
 
 public class OrderItemDaoImp extends BaseDao implements IorderItemDao {
+
+    /**
+     * 查询订单详情
+     * @param inid 订单编号
+     * @return 返回订单项链表
+     */
     @Override
     public ArrayList<OrderitemBean> findAllOrderItems(String inid) {
         ArrayList<OrderitemBean> items=null;

@@ -5,17 +5,23 @@ import xyz.mfbrain.onlineshopping.bean.DishBean;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.function.ObjDoubleConsumer;
+
 
 /**
  * @program: OnlineShopping
- * @description: 菜品数据操作模块
+ * @description: 数据库菜品表操作类
  * @author: ChrisYoung
  * @create: 2018-05-17 14:33
  **/
 
 public class DishDaoImp extends BaseDao implements IdishDao {
 
+    /**
+     * 查询所有菜品，可以有序
+     * @param order 是否排序 1：升序 2：降序 其他顺序
+     * @param stid 商品id
+     * @return 返回菜品数组
+     */
     @Override
     public ArrayList<DishBean> findAllDishInOrder(int order, String stid) {
         ArrayList<DishBean> dishBeans=null;
@@ -34,6 +40,12 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return dishBeans;
     }
 
+    /**
+     * 根据菜品ID找到菜品
+     * @param id 菜品ID
+     * @param stid 商铺ID
+     * @return 返回菜品对象
+     */
     @Override
     public DishBean findDishByID(String id, String stid) {
         DishBean dishBean=null;
@@ -48,6 +60,12 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return dishBean;
     }
 
+    /**
+     * 根据菜名找到菜品，可用于店内搜索
+     * @param name 名称
+     * @param stid 店铺id
+     * @return 返回菜品对象
+     */
     @Override
     public DishBean findDishByName(String name, String stid) {
         DishBean dishBean=null;
@@ -62,6 +80,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return dishBean;
     }
 
+    /**
+     * 搜索菜名查找菜品
+     * @param name 菜名
+     * @return 菜品对象
+     */
     @Override
     public ArrayList<DishBean> findDishByName(String name) {
         ArrayList<DishBean> dishes=null;
@@ -75,6 +98,12 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return dishes;
     }
 
+    /**
+     * 添加菜品
+     * @param dish 新的菜品对象
+     * @param stid 商铺ID
+     * @return 添加结果
+     */
     @Override
     public boolean addDish(DishBean dish, String stid) {
         int result1=0;
@@ -92,6 +121,12 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return result1==1&&result2==1;
     }
 
+    /**
+     * 修改菜品
+     * @param dish 包含修改信息后的菜品对象
+     * @param stid 商铺信息
+     * @return 添加结果
+     */
     @Override
     public boolean modifyDish(DishBean dish, String stid) {
         int result=0;
@@ -105,6 +140,12 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return result==1;
     }
 
+    /**
+     * 删除菜品
+     * @param diid 菜品id
+     * @param stid 商铺id
+     * @return 删除结果
+     */
     @Override
     public boolean deleteDish(String diid, String stid) {
         int result=0;
@@ -117,6 +158,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return result==1;
     }
 
+    /**
+     * 获取菜品种类数量
+     * @param stid 商铺id
+     * @return 菜品种类数量
+     */
     @Override
     public int getDishNum(String stid) {
         int count=0;

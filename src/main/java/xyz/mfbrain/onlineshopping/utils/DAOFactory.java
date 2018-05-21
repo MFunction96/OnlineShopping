@@ -38,6 +38,6 @@ public class DAOFactory {
     public Object newInstance(String key) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         return Class.forName(getDaoFactory().getProperties().getProperty(key)).newInstance();
-
+        //Class.forName(getDaoFactory().getProperties().getProperty(key)).getDeclaredConstructor().newInstance();
     }
 }

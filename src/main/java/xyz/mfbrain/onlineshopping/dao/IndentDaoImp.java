@@ -11,14 +11,18 @@ import java.util.ArrayList;
 
 /**
  * @program: OnlineShopping
- * @description:
+ * @description: 订单数据库操作类
  * @author: ChrisYoung
  * @create: 2018-05-17 22:37
  **/
 
 public class IndentDaoImp extends BaseDao implements IindentDao {
 
-
+    /**
+     * 查询商户所有订单
+     * @param stid 商户id
+     * @return 订单链表
+     */
     @Override
     public ArrayList<IndentBean> findAllIndents(String stid) {
         ArrayList<IndentBean> indents=null;
@@ -31,6 +35,13 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         return indents;
     }
 
+    /**
+     * 根据日期范围查找订单
+     * @param startDate 起始时间
+     * @param endDate 截止时间
+     * @param stid 用户id
+     * @return 订单链表
+     */
     @Override
     public ArrayList<IndentBean> findAllIndentsByDate(String startDate,String endDate,String stid) {
         ArrayList<IndentBean> indents=null;
@@ -56,6 +67,11 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         return indent;
     }
 
+    /**
+     * 添加订单
+     * @param indent 新订单
+     * @return 添加结果
+     */
     @Override
     public boolean addIndent(IndentBean indent) {
         int result=0;
@@ -69,6 +85,12 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         return result==1;
     }
 
+    /**
+     * 修改订单状态
+     * @param id 订单编号
+     * @param status 订单状态
+     * @return 修改结果
+     */
     @Override
     public boolean modifyIndentStatus(String id, String status) {
         int result=0;
@@ -82,6 +104,12 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         return result==1;
     }
 
+    /**
+     * 修改订单评论
+     * @param id 订单编号
+     * @param remark 评论内容
+     * @return 修改结果
+     */
     @Override
     public boolean modifyIndentRemark(String id, String remark) {
         int result=0;
@@ -97,6 +125,12 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
 
     }
 
+
+    /**
+     * 获取订单数量
+     * @param stid 商户id
+     * @return 订单数量
+     */
     @Override
     public int getIndentNumByStoreId(String stid) {
         int count=0;
@@ -109,6 +143,14 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         return count;
     }
 
+    /**
+     * 获取指定范围内的订单数量
+     * @param startDate 起始时间
+     * @param endDate 截止时间
+     * @param stid 商户id
+     * @return 订单数量
+     *
+     */
     @Override
     public int getIndentNumByDate(String startDate, String endDate, String stid) {
         int count=0;
@@ -121,6 +163,12 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         return count;
     }
 
+
+    /**
+     * 删除订单
+     * @param inid 订单id
+     * @return 删除结果
+     */
     @Override
     public boolean deleteIndent(String inid) {
         int result=0;

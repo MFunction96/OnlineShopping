@@ -16,9 +16,6 @@ import java.util.Properties;
  */
 public class JDBCUtils {
     private  static JDBCUtils jdbc_ustils=new JDBCUtils();
-//    private String driver;//数据库驱动
-//    private String username;//数据库登录名
-//    private String password;//密码
     private Properties properties=new Properties();
     private DataSource dataSource;
     //url格式：
