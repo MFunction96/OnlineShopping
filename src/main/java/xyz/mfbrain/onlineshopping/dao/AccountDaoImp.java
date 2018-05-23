@@ -20,15 +20,14 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
      * 根据用户名、密码以及用户角色查找用户
      * 可用于用户登录、修改密码
      * @param name  用户名
-     * @param password 密码
      * @param role 角色
      * @return 只包含用户名、密码和角色信息的用户对象
      */
     @Override
-    public AccountBean findAccount(String name, String password,int role)  {
+    public AccountBean findAccount(String name,int role)  {
         AccountBean accountBean=null;
-        String sql="select ac_id AcId,ac_name AcName,ac_password AcPassword from Account where ac_name=? and ac_password=? and ac_role=?";
-        Object [] conditions={name,password,role};
+        String sql="select ac_id AcId,ac_name AcName,ac_password AcPassword from Account where ac_name=? and ac_role=?";
+        Object [] conditions={name,role};
         try {
             accountBean=(AccountBean) this.findObjectWithConditions(sql,conditions,AccountBean.class);
         } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
@@ -140,7 +139,7 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
     @Override
     public boolean modifyPassword(String id,String password) {
         int result=0;
-        String sql="update account set ac_password=? where ac_id=?";
+        String sql="update Account set ac_password=? where ac_id=?";
         Object params[]={password,id};
         try {
             result=modifyObjectInformation(sql,params);

@@ -6,6 +6,8 @@ import xyz.mfbrain.onlineshopping.dao.IAccountDao;
 import xyz.mfbrain.onlineshopping.utils.DAOFactory;
 import xyz.mfbrain.onlineshopping.utils.MD5EncryptUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 /**
@@ -35,8 +37,16 @@ public class UserService {
      * @return 验证结果
      */
     public boolean vaidateAccount(String name,String password,int role){
-        String truepwd=MD5EncryptUtils.MD5(password);
-        return accountDao.findAccount(name,truepwd,role)==null;
+        boolean result=false;
+        AccountBean account=accountDao.findAccount(name,role);
+        try {
+            result= MD5EncryptUtils.validPassword(password,account.getAcPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -45,7 +55,7 @@ public class UserService {
      * @return
      */
     public boolean isExist(String name){
-        return accountDao.findAccountByName(name)==null;
+        return accountDao.findAccountByName(name)!=null;
     }
 
     /**
@@ -66,7 +76,14 @@ public class UserService {
      */
     public boolean registerAccount(AccountBean account){
         UUID uuid=UUID.randomUUID();
-        String truepwd=MD5EncryptUtils.MD5(account.getAcPassword());
+        String truepwd= null;
+        try {
+            truepwd = MD5EncryptUtils.getEncryptedPwd(account.getAcPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         account.setAcId(String.valueOf(uuid));
         account.setAcPassword(truepwd);
         return accountDao.addAccount(account);
@@ -80,7 +97,14 @@ public class UserService {
      */
     public boolean modifyPassword(String id,String newpwd){
         boolean result=false;
-        String truepwd=MD5EncryptUtils.MD5(newpwd);
+        String truepwd= null;
+        try {
+            truepwd = MD5EncryptUtils.getEncryptedPwd(newpwd);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         result=accountDao.modifyPassword(id,truepwd);
         return result;
     }
