@@ -5,6 +5,7 @@
          version="4.0">
     <display-name>OnlineShopping</display-name>
     <welcome-file-list>
-        <welcome-file>welcome.html</welcome-file>
+        <welcome-file>login.html</welcome-file>
+
     </welcome-file-list>
 </web-app>
