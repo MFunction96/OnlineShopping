@@ -23,9 +23,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public ArrayList<DishorderBean> findDishOrder(String stid) {
         ArrayList<DishorderBean> orders=null;
-        String sql="select In_id Inid,St_id Stid,St_name StName,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
+        String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
-                "InOrdertime from DishOrder where St_id="+stid;
+                "InOrdertime from DishOrder where St_id="+"'"+stid+"'";
         try {
             orders=this.findAllObject(sql,DishorderBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -45,9 +45,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public ArrayList<DishorderBean> findDishOrderByDateAndStid(String startDate, String endDate, String stid) {
         ArrayList<DishorderBean> orders=null;
-        String sql="select In_id Inid,St_id Stid,St_name StName,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
+        String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
-                "InOrdertime from DishOrder where St_id="+stid+" and In_ordertime between "+startDate+" and "+endDate;
+                "InOrdertime from DishOrder where St_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
         try {
             orders=this.findAllObject(sql,DishorderBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -67,9 +67,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public ArrayList<DishorderBean> findDishOrderByDateAndAcid(String startDate, String endDate, String acid) {
         ArrayList<DishorderBean> orders=null;
-        String sql="select In_id Inid,St_id Stid,St_name StName,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
+        String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
-                "InOrdertime from DishOrder where St_id="+acid+" and In_ordertime between "+startDate+" and "+endDate;
+                "InOrdertime from DishOrder where Customerid="+"'"+acid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
         try {
             orders=this.findAllObject(sql,DishorderBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -87,7 +87,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public DishorderBean findDishOrderByOrderId(String inid) {
         DishorderBean order=null;
-        String sql="select In_id Inid,St_id Stid,St_name StName,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
+        String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
                 "InOrdertime from DishOrder where In_id=?";
         Object params[]={inid};
@@ -108,9 +108,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public ArrayList<DishorderBean> findDishOrderByAcountId(String acid) {
         ArrayList<DishorderBean> orders=null;
-        String sql="select In_id Inid,St_id Stid,St_name StName,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
+        String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
-                "InOrdertime from DishOrder where Customerid="+acid;
+                "InOrdertime from DishOrder where Customerid="+"'"+acid+"'";
         try {
             orders=this.findAllObject(sql,DishorderBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -128,9 +128,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public int getDishOrderNumByStId(String stid) {
         int count=0;
-        String sql="select cout(*) frome DishOrder where St_id="+stid;
+        String sql="select count(*) from DishOrder where St_id="+"'"+stid+"'";
         try {
-            this.getTotalObjectsNum(sql);
+            count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -147,9 +147,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public int getDishOrderNumByDateAndStid(String startDate, String endDate, String stid) {
         int count=0;
-        String sql="select cout(*) from DishOrder where St_id="+stid+" and In_ordertime between "+startDate+" and "+endDate;
+        String sql="select count(*) from DishOrder where St_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
         try {
-            this.getTotalObjectsNum(sql);
+            count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -166,9 +166,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public int getDishOrderNumByDateAndAcid(String startDate, String endDate, String acid) {
         int count=0;
-        String sql="select cout(*) from DishOrder where Customerid="+acid+" and In_ordertime between "+startDate+" and "+endDate;
+        String sql="select count(*) from DishOrder where Customerid="+"'"+acid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
         try {
-            this.getTotalObjectsNum(sql);
+            count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -184,9 +184,9 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     @Override
     public int getDishOrderNumByAcId(String acid) {
         int count=0;
-        String sql="select cout(*) frome DishOrder where Customerid="+acid;
+        String sql="select count(*) from DishOrder where Customerid="+"'"+acid+"'";
         try {
-            this.getTotalObjectsNum(sql);
+            count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }

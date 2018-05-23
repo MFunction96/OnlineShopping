@@ -132,12 +132,13 @@ public class OrderService  {
     }
 
     /**
-     * 添加订单
-     * @param indent 新的订单
-     * @param items 新的订单项
+     * 添加新订单
+     * @param shopcart 购物车信息
      * @return 添加结果
      */
-    public boolean addOrder(IndentBean indent, ArrayList<IndentItemBean> items){
+    public boolean addOrder(OrderBean shopcart){
+        IndentBean indent=new IndentBean();
+        ArrayList<IndentItemBean> items=new ArrayList<>();
         boolean result1;
         boolean result2=false;
         UUID uuid;
@@ -148,14 +149,23 @@ public class OrderService  {
             e.printStackTrace();
         }
         uuid=UUID.randomUUID();
-        indent.setStId(String.valueOf(uuid));
+        indent.setInId(String.valueOf(uuid));
+        indent.setCustomerid(shopcart.getDishorderBean().getCustomerid());
+        indent.setStId(shopcart.getDishorderBean().getStid());
+        indent.setInOrdertime(shopcart.getDishorderBean().getInOrdertime());
+        indent.setInDesc(shopcart.getDishorderBean().getInDesc());
+        indent.setInRemark(shopcart.getDishorderBean().getInRemark());
+        indent.setInTotalprice(shopcart.getDishorderBean().getInTotalprice());
+        indent.setInStatus(shopcart.getDishorderBean().getInStatus());
         result1=indentDao.addIndent(indent);
-        for (IndentItemBean item:
-             items) {
-           uuid=UUID.randomUUID();
-            item.setInId(indent.getInId());
-            item.setInId(String.valueOf(uuid));
-            result2=indentItemDao.addIndentItem(item);
+        for(int i=0;i<shopcart.getOrderItems().size();i++){
+            uuid=UUID.randomUUID();
+            items.get(i).setInId(shopcart.getOrderItems().get(i).getInId());
+            items.get(i).setDiId(shopcart.getOrderItems().get(i).getDiId());
+            items.get(i).setItAmmount(shopcart.getOrderItems().get(i).getItAmmount());
+            items.get(i).setItId(String.valueOf(uuid));
+            items.get(i).setItTotalprice(shopcart.getOrderItems().get(i).getItTotalprice());
+            result2=indentItemDao.addIndentItem(items.get(i));
         }
 
         return result1&&result2;

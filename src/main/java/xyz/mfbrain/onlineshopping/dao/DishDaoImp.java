@@ -25,8 +25,8 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     @Override
     public ArrayList<DishBean> findAllDishInOrder(int order, String stid) {
         ArrayList<DishBean> dishBeans=null;
-        String sql="select di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
-                "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where Commodit.st_id="+stid;
+        String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
+                "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where Commodit.st_id="+"'"+stid+"'";
         if(order==1){
             sql=sql+"order by di_price asc";
         }else if(order==2){
@@ -49,7 +49,7 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     @Override
     public DishBean findDishByID(String id, String stid) {
         DishBean dishBean=null;
-        String sql="select di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
+        String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
                 "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where Commodit.di_id=?  and Commodit.st_id=?";
         Object params[]={id,stid};
         try {
@@ -69,7 +69,7 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     @Override
     public DishBean findDishByName(String name, String stid) {
         DishBean dishBean=null;
-        String sql="select di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
+        String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
                 "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where di_name=?  and Commodit.st_id=?";
         Object params[]={name,stid};
         try {
@@ -88,7 +88,7 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     @Override
     public ArrayList<DishBean> findDishByName(String name) {
         ArrayList<DishBean> dishes=null;
-        String sql="select di_id DiId,di_name DiName,di_price DiPrice ,di_image DiImage,di_status DiStatus from Dish where di_name="+name;
+        String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice ,di_image DiImage,di_status DiStatus from Dish where di_name="+name;
         try {
             dishes=this.findAllObject(sql,DishBean.class);
         } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
@@ -149,7 +149,7 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     @Override
     public boolean deleteDish(String diid, String stid) {
         int result=0;
-        String sql="delete from Dish where di_id="+diid;
+        String sql="delete from Dish where di_id="+"'"+diid+"'";
         try {
             result=this.deleteObject(sql);
         } catch (SQLException e) {
@@ -166,7 +166,7 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     @Override
     public int getDishNum(String stid) {
         int count=0;
-        String sql="select count(*) from Commodit where st_id="+stid;
+        String sql="select count(*) from Commodit where st_id="+"'"+stid+"'";
         try {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
