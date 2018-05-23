@@ -3,11 +3,11 @@ package xyz.mfbrain.onlineshopping.bean;
 
 public class StoreBean {
 
-  private String stId;
-  private String acId;
-  private String stName;
-  private String stPhone;
-  private String stDesc;
+  private String stId=" ";
+  private String acId=" ";
+  private String stName=" ";
+  private String stPhone=" ";
+  private String stDesc=" ";
 
 
   public String getStId() {

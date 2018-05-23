@@ -3,8 +3,8 @@ package xyz.mfbrain.onlineshopping.bean;
 
 public class CommoditBean {
 
-  private String stId;
-  private String diId;
+  private String stId=" ";
+  private String diId=" ";
 
 
   public String getStId() {

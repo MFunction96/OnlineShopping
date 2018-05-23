@@ -2,16 +2,18 @@ package xyz.mfbrain.onlineshopping.bean;
 
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 public class IndentBean {
 
-  private String inId;
-  private String customerid;
-  private java.sql.Timestamp inOrdertime;
-  private BigDecimal inTotalprice;
-  private String inDiesc;
-  private String inRemark;
-  private String inStatus;
+  private String inId=" ";
+  private String customerid=" ";
+  private String stId=" ";
+  private Timestamp inOrdertime=Timestamp.valueOf("1870-1-1 0:0:0");
+  private BigDecimal inTotalprice=BigDecimal.valueOf(0);
+  private String inDesc=" ";
+  private String inRemark=" ";
+  private String inStatus=" ";
 
 
   public String getInId() {
@@ -32,11 +34,21 @@ public class IndentBean {
   }
 
 
-  public java.sql.Timestamp getInOrdertime() {
+  public String getStId() {
+    return stId;
+  }
+
+  public void setStId(String stId) {
+    this.stId = stId;
+  }
+
+
+
+  public Timestamp getInOrdertime() {
     return inOrdertime;
   }
 
-  public void setInOrdertime(java.sql.Timestamp inOrdertime) {
+  public void setInOrdertime(Timestamp inOrdertime) {
     this.inOrdertime = inOrdertime;
   }
 
@@ -50,12 +62,12 @@ public class IndentBean {
   }
 
 
-  public String getInDiesc() {
-    return inDiesc;
+  public String getInDesc() {
+    return inDesc;
   }
 
-  public void setInDiesc(String inDiesc) {
-    this.inDiesc = inDiesc;
+  public void setInDesc(String inDesc) {
+    this.inDesc = inDesc;
   }
 
 

@@ -5,12 +5,12 @@ import java.math.BigDecimal;
 
 public class DishBean {
 
-  private String diId;
-  private String diName;
-  private BigDecimal diPrice;
-  private String diDesc;
-  private String diImage;
-  private long diStatus;
+  private String diId=" ";
+  private String diName=" ";
+  private BigDecimal diPrice= BigDecimal.valueOf(0);
+  private String diDesc=" ";
+  private String diImage=" ";
+  private long diStatus=0;
 
 
   public String getDiId() {
