@@ -26,7 +26,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     @Override
     public ArrayList<IndentBean> findAllIndents(String stid) {
         ArrayList<IndentBean> indents=null;
-        String sql="select in_id InId,customerid Customerid,in_ordertime InOrdertime,in_totalprice Intotalprice,in_desc InDesc,in_remark InRemark,in_staus InStatus from Indent where st_id="+stid;
+        String sql="select in_id InId,customerid Customerid,in_ordertime InOrdertime,in_totalprice InTotalprice,in_desc InDesc,in_remark InRemark,in_status InStatus from Indent where st_id="+"'"+stid+"'";
         try {
             indents=this.findAllObject(sql,IndentBean.class);
         } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
@@ -45,7 +45,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     @Override
     public ArrayList<IndentBean> findAllIndentsByDate(String startDate,String endDate,String stid) {
         ArrayList<IndentBean> indents=null;
-        String sql="select in_id InId,customerid Customerid,in_ordertime InOrdertime,in_totalprice Intotalprice,in_desc InDesc,in_remark InRemark,in_staus InStatus from Indent where st_id="+stid+" and in_ordertime between "+startDate+" and "+endDate;
+        String sql="select in_id InId,customerid Customerid,in_ordertime InOrdertime,in_totalprice InTotalprice,in_desc InDesc,in_remark InRemark,in_status InStatus from Indent where st_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
         try {
             indents=this.findAllObject(sql,IndentBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -57,7 +57,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     @Override
     public IndentBean findIndentByID(String id) {
         IndentBean indent=null;
-        String sql="select in_id InId,customerid Customerid,in_ordertime InOrdertime,in_totalprice Intotalprice,in_desc InDesc,in_remark InRemark,in_staus InStatus from Indent where in_id=?";
+        String sql="select in_id InId,customerid Customerid,in_ordertime InOrdertime,in_totalprice InTotalprice,in_desc InDesc,in_remark InRemark,in_status InStatus from Indent where in_id=?";
         Object params[]={id};
         try {
             indent=(IndentBean)this.findObjectWithConditions(sql,params,IndentBean.class);
@@ -134,7 +134,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     @Override
     public int getIndentNumByStoreId(String stid) {
         int count=0;
-        String sql="select count(*) from Indent where st_id="+stid;
+        String sql="select count(*) from Indent where st_id="+"'"+stid+"'";
         try {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
@@ -154,7 +154,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     @Override
     public int getIndentNumByDate(String startDate, String endDate, String stid) {
         int count=0;
-        String sql="select count(*) from Indent where st_id="+stid+" and in_ordertime between "+startDate+" and "+endDate;
+        String sql="select count(*) from Indent where st_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
         try {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
@@ -172,7 +172,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     @Override
     public boolean deleteIndent(String inid) {
         int result=0;
-        String sql="delete from Indent where in_id="+inid;
+        String sql="delete from Indent where in_id="+"'"+inid+"'";
         try {
             result=this.deleteObject(sql);
         } catch (SQLException e) {

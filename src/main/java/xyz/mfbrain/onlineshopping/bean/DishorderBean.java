@@ -13,6 +13,8 @@ import java.util.Objects;
 
 public class DishorderBean {
     private String inId=" ";
+    private String stid=" ";
+    private String stname=" ";
     private String customerid=" ";
     private String acName=" ";
     private BigDecimal inTotalprice=BigDecimal.valueOf(0);
@@ -33,6 +35,22 @@ public class DishorderBean {
 
     public String getCustomerid() {
         return customerid;
+    }
+
+    public String getStid() {
+        return stid;
+    }
+
+    public void setStid(String stid) {
+        this.stid = stid;
+    }
+
+    public String getStname() {
+        return stname;
+    }
+
+    public void setStname(String stname) {
+        this.stname = stname;
     }
 
     public void setCustomerid(String customerid) {

@@ -22,7 +22,7 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public ArrayList<StoreBean> findAllStore() {
         ArrayList<StoreBean> stores=null;
-        String sql="select st_id StId,st_name StName,st_phone StPhone,st_desc StDesc from Store";
+        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc from Store";
         try {
             stores=this.findAllObject(sql,StoreBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -95,7 +95,7 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public boolean deleteStoreByID(String id) {
         int result=0;
-        String sql="delete from Store where st_id="+id;
+        String sql="delete from Store where st_id="+"'"+id+"'";
         try {
             result=this.deleteObject(sql);
         } catch (SQLException e) {
