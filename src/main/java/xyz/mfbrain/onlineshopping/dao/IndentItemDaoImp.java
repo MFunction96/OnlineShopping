@@ -23,7 +23,7 @@ public class IndentItemDaoImp extends BaseDao implements IindentItemDao {
     @Override
     public ArrayList<IndentItemBean> findIndentItems(String inid) {
         ArrayList<IndentItemBean> items=null;
-        String sql="select it_id ItId,di_id DiId,it_ammount ItAmmount,it_totalprice ItTotalprice where in_id=?"+inid;
+        String sql="select it_id ItId,di_id DiId,it_ammount ItAmmount,it_totalprice ItTotalprice from IndentItem where in_id="+"'"+inid+"'";
         try {
             items=this.findAllObject(sql,IndentItemBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -40,7 +40,7 @@ public class IndentItemDaoImp extends BaseDao implements IindentItemDao {
     @Override
     public boolean addIndentItem(IndentItemBean item) {
         int result=0;
-        String sql="inset into IndentItem values(?,?,?,?,?)";
+        String sql="insert into IndentItem values(?,?,?,?,?)";
         Object params[]={item.getItId(),item.getDiId(),item.getItAmmount(),item.getItTotalprice(),item.getInId()};
         try {
             result=this.modifyObjectInformation(sql,params);

@@ -12,7 +12,7 @@ public class DAOFactory {
 
     private DAOFactory(){
         //加载daoconfig.property
-        InputStream ios=DAOFactory.class.getClassLoader().getResourceAsStream("daoconfig.property");
+        InputStream ios=DAOFactory.class.getClassLoader().getResourceAsStream("dao.properties");
         properties=new Properties();
         try {
             properties.load(ios);//将输入输流中的配置信息（键值对）的方式，加载到properties对象中

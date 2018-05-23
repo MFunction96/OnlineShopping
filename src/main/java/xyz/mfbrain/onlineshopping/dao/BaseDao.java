@@ -81,6 +81,7 @@ public abstract class BaseDao {
             ps.setObject(i+1,params[i]);
         }
         affect_rows=ps.executeUpdate();
+        con.commit();
         JDBCUtils.getJdbc_ustils().free(con,null,ps);
         return affect_rows;
     }
@@ -90,6 +91,7 @@ public abstract class BaseDao {
         con=JDBCUtils.getJdbc_ustils().getConnection();
         ps=con.prepareStatement(sql);
         affect_rows=ps.executeUpdate();
+        con.commit();
         JDBCUtils.getJdbc_ustils().free(con,resultSet,ps);
         return affect_rows;
     }

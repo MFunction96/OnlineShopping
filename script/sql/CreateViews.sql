@@ -27,6 +27,6 @@ Create View DishOrder as
     Account.ac_address AS Ac_address,
     Indent.in_ordertime AS In_ordertime
   FROM
-(Indent
-JOIN Account ON ((Indent.customerid = Account.ac_id)))
-INNER JOIN Store ON Store.ac_id = Account.ac_id AND Indent.st_id = Store.st_id
+Indent
+INNER JOIN Account ON Indent.customerid = Account.ac_id
+INNER JOIN Store ON Indent.st_id = Store.st_id

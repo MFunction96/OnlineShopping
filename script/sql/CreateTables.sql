@@ -50,7 +50,7 @@ create table Indent
 	customerid           nvarchar(40)                    not null,
 	in_ordertime         timestamp                      not null,
 	in_totalprice        decimal                        not null,
-	in_diesc             nvarchar(256)                   not null,
+	in_desc             nvarchar(256)                   not null,
 	in_remark            nvarchar(256)                   not null,
 	in_status            nvarchar(10)                    not null,
 	constraint PK_INDENT primary key clustered (in_id),
