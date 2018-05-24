@@ -6,7 +6,7 @@ create table Account
 (
 	ac_id                nvarchar(40)                    not null,
 	ac_name              nvarchar(256)                   not null,
-	ac_password          nvarchar(32)                    not null,
+	ac_password          nvarchar(128)                    not null,
 	ac_sex               nvarchar(4)                     not null,
 	ac_birthday          date                           not null,
 	ac_phone             nvarchar(20)                    not null,

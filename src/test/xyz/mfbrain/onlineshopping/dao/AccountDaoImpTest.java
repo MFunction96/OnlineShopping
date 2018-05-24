@@ -29,7 +29,7 @@ public class AccountDaoImpTest {
 
     @Test
     public void findAccount() {
-        assertNotNull(accountDao.findAccount("Tom","123456",1));
+        assertNotNull(accountDao.findAccount("Tom",1));
 
     }
 
@@ -40,7 +40,7 @@ public class AccountDaoImpTest {
 
     @Test
     public void findAccountByName() {
-        System.out.println(accountDao.findAccountByName("Tom").getAcName());
+        System.out.println(accountDao.findAccountByName("Tomas").getAcName());
 
     }
 

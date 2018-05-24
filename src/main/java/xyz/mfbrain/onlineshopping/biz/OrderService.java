@@ -96,7 +96,7 @@ public class OrderService  {
      * @return 相应订单
      */
     public OrderBean showOrderByID(String inid){
-        ArrayList<DishorderBean> dishorders=null;
+        ArrayList<DishorderBean> dishorders=new ArrayList<>();
         try {
             dishOrderDao=(DishOrderDaoImp)DAOFactory.getDaoFactory().newInstance("DishOrderDao");
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
@@ -114,8 +114,7 @@ public class OrderService  {
      */
     private ArrayList<OrderBean> combineOrderAndItem(ArrayList<DishorderBean> dishorders){
         ArrayList<OrderBean> orders=new ArrayList<>();
-        OrderBean order=new OrderBean();
-        ArrayList<OrderitemBean> orderitems=null;
+
         try {
             orderItemDao=(OrderItemDaoImp)DAOFactory.getDaoFactory().newInstance("OrderItemDao");
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
@@ -123,10 +122,12 @@ public class OrderService  {
         }
         for (DishorderBean dishorder :
                 dishorders) {
-            orderitems = orderItemDao.findAllOrderItems(dishorder.getInId());
+            OrderBean order=new OrderBean();
+            ArrayList<OrderitemBean> orderitems = orderItemDao.findAllOrderItems(dishorder.getInId());
             order.setDishorderBean(dishorder);
             order.setOrderItems(orderitems);
             orders.add(order);
+
         }
         return orders;
     }
@@ -138,7 +139,6 @@ public class OrderService  {
      */
     public boolean addOrder(OrderBean shopcart){
         IndentBean indent=new IndentBean();
-        ArrayList<IndentItemBean> items=new ArrayList<>();
         boolean result1;
         boolean result2=false;
         UUID uuid;
@@ -158,14 +158,16 @@ public class OrderService  {
         indent.setInTotalprice(shopcart.getDishorderBean().getInTotalprice());
         indent.setInStatus(shopcart.getDishorderBean().getInStatus());
         result1=indentDao.addIndent(indent);
+
         for(int i=0;i<shopcart.getOrderItems().size();i++){
             uuid=UUID.randomUUID();
-            items.get(i).setInId(shopcart.getOrderItems().get(i).getInId());
-            items.get(i).setDiId(shopcart.getOrderItems().get(i).getDiId());
-            items.get(i).setItAmmount(shopcart.getOrderItems().get(i).getItAmmount());
-            items.get(i).setItId(String.valueOf(uuid));
-            items.get(i).setItTotalprice(shopcart.getOrderItems().get(i).getItTotalprice());
-            result2=indentItemDao.addIndentItem(items.get(i));
+            IndentItemBean item=new IndentItemBean();
+            item.setInId(indent.getInId());
+            item.setDiId(shopcart.getOrderItems().get(i).getDiId());
+            item.setItAmmount(shopcart.getOrderItems().get(i).getItAmmount());
+            item.setItId(String.valueOf(uuid));
+            item.setItTotalprice(shopcart.getOrderItems().get(i).getItTotalprice());
+            result2=indentItemDao.addIndentItem(item);
         }
 
         return result1&&result2;

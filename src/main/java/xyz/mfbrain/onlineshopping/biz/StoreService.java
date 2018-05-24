@@ -36,7 +36,7 @@ public class StoreService {
      * @return 结果
      */
     public boolean isExist(String name){
-        return storeDao.findStoreByName(name)==null;
+        return storeDao.findStoreByName(name)!=null;
     }
 
     /**
