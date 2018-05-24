@@ -16,7 +16,7 @@ public class JsonUtil {
      * @param filePath Json文件路径
      * @throws IOException File Access Exception
      */
-    public static <T> void SerializeObj(Object obj, String filePath) throws IOException {
+    public static <T> void SerializeObj(Object obj, String filePath, boolean appendFile) throws IOException {
         var file = new File(filePath);
         if (!file.getParentFile().exists()) {
             if (!file.getParentFile().mkdirs()) throw new IOException("Can't create folder!");
@@ -29,7 +29,7 @@ public class JsonUtil {
             if (!file.createNewFile()) throw new IOException("Can't create file!");
         }
         if (!file.canWrite()) throw new IOException("Can't write file!");
-        var writer = new FileWriter(file);
+        var writer = new FileWriter(file, appendFile);
         writer.write(json);
         writer.close();
     }
