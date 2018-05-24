@@ -1,8 +1,11 @@
 package xyz.mfbrain.onlineshopping.dao;
 
 import xyz.mfbrain.onlineshopping.bean.IndentBean;
+import xyz.mfbrain.onlineshopping.bean.logBean;
 import xyz.mfbrain.onlineshopping.utils.JDBCUtils;
+import xyz.mfbrain.onlineshopping.utils.JsonUtil;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -31,6 +34,11 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
             indents=this.findAllObject(sql,IndentBean.class);
         } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return indents;
     }
@@ -50,6 +58,11 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
             indents=this.findAllObject(sql,IndentBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return indents;
     }
@@ -63,6 +76,11 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
             indent=(IndentBean)this.findObjectWithConditions(sql,params,IndentBean.class);
         } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return indent;
     }
@@ -77,11 +95,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         int result=0;
         String sql="insert into Indent values(?,?,?,?,?,?,?,?)";
         Object params []={indent.getInId(),indent.getStId(),indent.getCustomerid(),indent.getInOrdertime(),indent.getInTotalprice(),indent.getInDesc(),indent.getInRemark(),indent.getInStatus()};
-        try {
-            result=this.modifyObjectInformation(sql,params);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        result = getResult(result, sql, params);
         return result==1;
     }
 
@@ -96,12 +110,22 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         int result=0;
         String sql="update Indent set in_status=? where in_id=?";
         Object params[]={status,id};
+        result = getResult(result, sql, params);
+        return result==1;
+    }
+
+    private int getResult(int result, String sql, Object[] params) {
         try {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
-        return result==1;
+        return result;
     }
 
     /**
@@ -115,11 +139,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
         int result=0;
         String sql="update Indent set in_remark=? where in_id=?";
         Object params[]={remark,id};
-        try {
-            result=this.modifyObjectInformation(sql,params);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        result = getResult(result, sql, params);
         return result==1;
 
 
@@ -135,11 +155,7 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     public int getIndentNumByStoreId(String stid) {
         int count=0;
         String sql="select count(*) from Indent where st_id="+"'"+stid+"'";
-        try {
-            count=this.getTotalObjectsNum(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        count = getCount(count, sql);
         return count;
     }
 
@@ -155,10 +171,20 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
     public int getIndentNumByDate(String startDate, String endDate, String stid) {
         int count=0;
         String sql="select count(*) from Indent where st_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
+        count = getCount(count, sql);
+        return count;
+    }
+
+    private int getCount(int count, String sql) {
         try {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return count;
     }
@@ -177,6 +203,11 @@ public class IndentDaoImp extends BaseDao implements IindentDao {
             result=this.deleteObject(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }

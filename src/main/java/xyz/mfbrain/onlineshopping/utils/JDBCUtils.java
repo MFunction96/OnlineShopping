@@ -1,6 +1,7 @@
 package xyz.mfbrain.onlineshopping.utils;
 
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import xyz.mfbrain.onlineshopping.bean.logBean;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -45,6 +46,11 @@ public class JDBCUtils {
             dataSource=BasicDataSourceFactory.createDataSource(properties);
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
@@ -58,11 +64,21 @@ public class JDBCUtils {
             connection=dataSource.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         try {
             connection.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return connection;
     }

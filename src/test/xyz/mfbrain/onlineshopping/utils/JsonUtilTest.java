@@ -32,7 +32,7 @@ public class JsonUtilTest {
         var obj = new OrderBean();
         obj.setDishorderBean(dishorder);
         obj.setOrderItems(items);
-        JsonUtil.SerializeObj(obj,  "./test.json", false);
+       // JsonUtil.SerializeObj(obj,  "./test.json", false);
         var result = (OrderBean) JsonUtil.DeserializeObj("./test.json", OrderBean.class);
         assertEquals(obj, result);
     }
