@@ -40,6 +40,21 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         return dishBeans;
     }
 
+    @Override
+    public ArrayList<DishBean> findDishesForPageList(int startrow, int rownums,String stid) {
+        ArrayList<DishBean> dishes=null;
+        String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
+                "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where Commodit.st_id="+"'"+stid+"'"+" limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
+        try {
+            dishes=this.findAllObject(sql,DishBean.class);
+        } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+
+        return dishes;
+    }
+
     /**
      * 根据菜品ID找到菜品
      * @param id 菜品ID

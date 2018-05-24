@@ -31,6 +31,18 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
         return stores;
     }
 
+    @Override
+    public ArrayList<StoreBean> findStoresForPageList(int startrow, int rownums) {
+        ArrayList<StoreBean> stores=null;
+        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc from Store limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
+        try {
+            stores=this.findAllObject(sql,StoreBean.class);
+        } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return stores;
+    }
+
     /**
      * 根据名称查找商铺
      * @param name 商铺名称
