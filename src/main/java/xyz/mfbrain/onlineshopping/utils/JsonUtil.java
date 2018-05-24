@@ -18,16 +18,12 @@ public class JsonUtil {
      */
     public static <T> void SerializeObj(Object obj, String filePath, boolean appendFile) throws IOException {
         var file = new File(filePath);
-        if (!file.getParentFile().exists()) {
-            if (!file.getParentFile().mkdirs()) throw new IOException("Can't create folder!");
-        }
+        if (!file.getParentFile().exists() && !file.getParentFile().mkdirs()) throw new IOException("Can't create folder!");
         var serializer = new Gson();
         var token = new TypeToken<T>() {
         }.getType();
         var json = serializer.toJson(obj, token);
-        if (file.exists()) {
-            if (!file.createNewFile()) throw new IOException("Can't create file!");
-        }
+        if (!file.exists() && !file.createNewFile()) throw new IOException("Can't create file!");
         if (!file.canWrite()) throw new IOException("Can't write file!");
         var writer = new FileWriter(file, appendFile);
         writer.write(json);
