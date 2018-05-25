@@ -1,7 +1,10 @@
 package xyz.mfbrain.onlineshopping.dao;
 
 import xyz.mfbrain.onlineshopping.bean.OrderitemBean;
+import xyz.mfbrain.onlineshopping.bean.logBean;
+import xyz.mfbrain.onlineshopping.utils.JsonUtil;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,6 +31,11 @@ public class OrderItemDaoImp extends BaseDao implements IorderItemDao {
             items=this.findAllObject(sql,OrderitemBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return items;
     }

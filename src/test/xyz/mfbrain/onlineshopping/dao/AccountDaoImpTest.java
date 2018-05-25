@@ -48,8 +48,8 @@ public class AccountDaoImpTest {
     public void addAccount() {
         AccountBean account=new AccountBean();
         account.setAcId(String.valueOf(uuid));
-        account.setAcName("Chris");
-        account.setAcPassword("1322222");
+        account.setAcName("Jack");
+        account.setAcPassword("111111");
         account.setAcAddress("dsfadsdfhghfgfaf");
         account.setAcBirthday(Date.valueOf("1998-1-1"));
         account.setAcPhone("1212112446342112121");

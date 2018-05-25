@@ -55,4 +55,9 @@ public class StoreServiceTest {
     @Test
     public void deleteStore() {
     }
+
+    @Test
+    public void page(){
+        assertNotNull(service.findSroreInPages(1,2));
+    }
 }
