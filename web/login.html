@@ -2,19 +2,12 @@
 <html lang="en" class="translated-ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <meta name="description" content>
-    <meta name="author" content>
-    <link rel="icon" href="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>OnlineShopping</title>
-    <!--Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custome style for this template-->
-    <link href="/css/sign.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css">
 </head>
 <body class="text-center">
-<form class="form-signin">
+<form class=" form-signin">
     <img  class="mb-4"src="/images/background01.jpg"alt width="72",height="72">
     <h1 class="h3 mb-3 font-weight-normal">
         <span style="vertical-align: inherit;">
@@ -46,12 +39,19 @@
                 <span style="vertical-align: inherit">登录</span>
             </span>
     </button>
-    <p class="mt-5 mb-3 text-muted">
-        <span style="vertical-align: inherit">
-            <span style="vertical-align: inherit">@2018-2019</span>
-        </span>
-    </p>
+    <div class="container body-content">
+        <hr/>
+        <footer class="text-center">
+            <p>Power by ASP.NET Core 2.0</p>
+            <p>Copyright &copy; 2016 - 2018 MFBlog</p>
+            <p>All Right Reserved</p>
+            <p id="ServerTime"></p>
+        </footer>
+    </div>
 </form>
 
+<script type="text/javascript" src="dist/bundle.js"></script>
+<script type="text/javascript" src="js/site.js"></script>
+<script>queryTime()</script>
 </body>
 </html>
