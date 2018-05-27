@@ -61,7 +61,6 @@ public abstract class BaseDao {
         ArrayList objects=new ArrayList<>();
         con=JDBCUtils.getJdbc_ustils().getConnection();
         st=con.createStatement();
-        //String sql="select sid ID,sname Name,age Age,sex Sex,birthday Birthday,address Address from studentinfo";
         resultSet=st.executeQuery(sql);
         while(resultSet.next()){
             Object object=new Object();

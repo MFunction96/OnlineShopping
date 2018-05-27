@@ -1,7 +1,10 @@
 package xyz.mfbrain.onlineshopping.dao;
 
 import xyz.mfbrain.onlineshopping.bean.DishorderBean;
+import xyz.mfbrain.onlineshopping.bean.logBean;
+import xyz.mfbrain.onlineshopping.utils.JsonUtil;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,11 +29,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
         String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
                 "InOrdertime from DishOrder where St_id="+"'"+stid+"'";
-        try {
-            orders=this.findAllObject(sql,DishorderBean.class);
-        } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        orders = getDishorderBeans(orders, sql);
 
         return orders;
     }
@@ -48,11 +47,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
         String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
                 "InOrdertime from DishOrder where St_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
-        try {
-            orders=this.findAllObject(sql,DishorderBean.class);
-        } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        orders = getDishorderBeans(orders, sql);
 
         return orders;
     }
@@ -70,12 +65,22 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
         String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
                 "InOrdertime from DishOrder where Customerid="+"'"+acid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
+        orders = getDishorderBeans(orders, sql);
+
+        return orders;
+    }
+
+    private ArrayList<DishorderBean> getDishorderBeans(ArrayList<DishorderBean> orders, String sql) {
         try {
             orders=this.findAllObject(sql,DishorderBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
-
         return orders;
     }
 
@@ -95,6 +100,11 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
             order=(DishorderBean) this.findObjectWithConditions(sql,params,DishorderBean.class);
         } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         return order;
@@ -111,12 +121,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
         String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
                 "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
                 "InOrdertime from DishOrder where Customerid="+"'"+acid+"'";
-        try {
-            orders=this.findAllObject(sql,DishorderBean.class);
-        } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
+        orders=getDishorderBeans(orders,sql);
         return orders;
     }
 
@@ -129,11 +134,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     public int getDishOrderNumByStId(String stid) {
         int count=0;
         String sql="select count(*) from DishOrder where St_id="+"'"+stid+"'";
-        try {
-            count=this.getTotalObjectsNum(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        count = getCount(count, sql);
         return count;
     }
 
@@ -148,11 +149,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     public int getDishOrderNumByDateAndStid(String startDate, String endDate, String stid) {
         int count=0;
         String sql="select count(*) from DishOrder where St_id="+"'"+stid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
-        try {
-            count=this.getTotalObjectsNum(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        count = getCount(count, sql);
         return count;
     }
 
@@ -167,11 +164,7 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     public int getDishOrderNumByDateAndAcid(String startDate, String endDate, String acid) {
         int count=0;
         String sql="select count(*) from DishOrder where Customerid="+"'"+acid+"'"+" and In_ordertime between "+"'"+startDate+"'"+" and "+"'"+endDate+"'";
-        try {
-            count=this.getTotalObjectsNum(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        count = getCount(count, sql);
         return count;
     }
 
@@ -185,10 +178,20 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
     public int getDishOrderNumByAcId(String acid) {
         int count=0;
         String sql="select count(*) from DishOrder where Customerid="+"'"+acid+"'";
+        count = getCount(count, sql);
+        return count;
+    }
+
+    private int getCount(int count, String sql) {
         try {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return count;
     }

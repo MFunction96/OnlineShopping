@@ -1,7 +1,10 @@
 package xyz.mfbrain.onlineshopping.dao;
 
 import xyz.mfbrain.onlineshopping.bean.DishBean;
+import xyz.mfbrain.onlineshopping.bean.logBean;
+import xyz.mfbrain.onlineshopping.utils.JsonUtil;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,12 +35,33 @@ public class DishDaoImp extends BaseDao implements IdishDao {
         }else if(order==2){
             sql=sql+"order by di_price desc";
         }
+        dishBeans = getDishBeans(dishBeans, sql);
+        return dishBeans;
+    }
+
+    @Override
+    public ArrayList<DishBean> findDishesForPageList(int startrow, int rownums,String stid) {
+        ArrayList<DishBean> dishes=null;
+        String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice,di_desc DiDesc,di_image DiImage,di_status DiStatus " +
+                "from Dish inner join Commodit on Dish.di_id=Commodit.di_id where Commodit.st_id="+"'"+stid+"'"+" limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
+        dishes = getDishBeans(dishes, sql);
+
+
+        return dishes;
+    }
+
+    private ArrayList<DishBean> getDishBeans(ArrayList<DishBean> dishes, String sql) {
         try {
-            dishBeans=this.findAllObject(sql,DishBean.class);
+            dishes=this.findAllObject(sql,DishBean.class);
         } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
-        return dishBeans;
+        return dishes;
     }
 
     /**
@@ -56,6 +80,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
             dishBean=(DishBean) this.findObjectWithConditions(sql,params,DishBean.class);
         } catch (SQLException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return dishBean;
     }
@@ -76,6 +105,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
             dishBean=(DishBean) this.findObjectWithConditions(sql,params,DishBean.class);
         } catch (SQLException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return dishBean;
     }
@@ -89,12 +123,7 @@ public class DishDaoImp extends BaseDao implements IdishDao {
     public ArrayList<DishBean> findDishByName(String name) {
         ArrayList<DishBean> dishes=null;
         String sql="select Dish.di_id DiId,di_name DiName,di_price DiPrice ,di_image DiImage,di_status DiStatus from Dish where di_name="+name;
-        try {
-            dishes=this.findAllObject(sql,DishBean.class);
-        } catch (InvocationTargetException | SQLException | IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
-
+        dishes=getDishBeans(dishes,sql);
         return dishes;
     }
 
@@ -117,6 +146,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
             result2=this.modifyObjectInformation(sql2,params2);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result1==1&&result2==1;
     }
@@ -136,6 +170,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -154,6 +193,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
             result=this.deleteObject(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -171,6 +215,11 @@ public class DishDaoImp extends BaseDao implements IdishDao {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return count;
     }

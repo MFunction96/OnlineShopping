@@ -75,4 +75,10 @@ public class DishDaoImpTest {
     public void getDishNum() {
         System.out.println(dishDao.getDishNum(stid));
     }
+
+    @Test
+    public void getPage(){
+        assertNotNull(dishDao.findDishesForPageList(0,2,"db9cdff2-f091-40a5-a85c-a15a1479ed06"));dishDao.findDishesForPageList(0,2,"db9cdff2-f091-40a5-a85c-a15a1479ed06");
+
+    }
 }

@@ -14,11 +14,20 @@ import java.util.ArrayList;
 
 public interface IdishDao {
     public ArrayList<DishBean> findAllDishInOrder(int order,String stid);
+
+    public ArrayList<DishBean> findDishesForPageList(int startrow,int rownums,String stid);
+
     public DishBean findDishByID(String id,String stid);
+
     public DishBean findDishByName(String name,String stid);
+
     public ArrayList<DishBean> findDishByName(String name);
+
     public boolean addDish(DishBean dish,String stid);
+
     public boolean modifyDish(DishBean dish,String stid);
+
     public boolean deleteDish(String diid,String stid);
+
     public int getDishNum(String stid);
 }

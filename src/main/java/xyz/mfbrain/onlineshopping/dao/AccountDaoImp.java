@@ -2,7 +2,10 @@ package xyz.mfbrain.onlineshopping.dao;
 
 
 import xyz.mfbrain.onlineshopping.bean.AccountBean;
+import xyz.mfbrain.onlineshopping.bean.logBean;
+import xyz.mfbrain.onlineshopping.utils.JsonUtil;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
@@ -20,19 +23,30 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
      * 根据用户名、密码以及用户角色查找用户
      * 可用于用户登录、修改密码
      * @param name  用户名
-     * @param password 密码
      * @param role 角色
      * @return 只包含用户名、密码和角色信息的用户对象
      */
     @Override
-    public AccountBean findAccount(String name, String password,int role)  {
+    public AccountBean findAccount(String name,int role)  {
         AccountBean accountBean=null;
-        String sql="select ac_id AcId,ac_name AcName,ac_password AcPassword from Account where ac_name=? and ac_password=? and ac_role=?";
-        Object [] conditions={name,password,role};
+        String sql="select ac_id AcId,ac_name AcName,ac_password AcPassword from Account where ac_name=? and ac_role=?";
+        Object [] conditions={name,role};
+        accountBean = getAccountBean( sql, conditions);
+        return accountBean;
+    }
+
+    private AccountBean getAccountBean(String sql, Object[] conditions) {
+        AccountBean accountBean=null;
         try {
             accountBean=(AccountBean) this.findObjectWithConditions(sql,conditions,AccountBean.class);
         } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
         }
         return accountBean;
     }
@@ -48,11 +62,7 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
         AccountBean accountBean=null;
         String sql="select ac_id AcId,ac_name AcName,ac_sex AcSex,ac_birthday AcBirthday,ac_phone AcPhone,ac_address AcAddress,ac_role AcRole from Account where ac_id=?";
         Object [] params={id};
-        try {
-            accountBean=(AccountBean)this.findObjectWithConditions(sql,params,AccountBean.class);
-        } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
-        }
+        accountBean = getAccountBean(sql, params);
         return accountBean;
     }
 
@@ -67,11 +77,8 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
         AccountBean accountBean=null;
         String sql="select ac_id AcId,ac_name AcName from Account where ac_name=?";
         Object [] params={name};
-        try {
-            accountBean=(AccountBean)this.findObjectWithConditions(sql,params,AccountBean.class);
-        } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
-        }
+        accountBean=getAccountBean(sql,params);
+
         return accountBean;
     }
 
@@ -90,6 +97,11 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -109,6 +121,11 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
            result= this.modifyObjectInformation(sql,params)==1;
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result;
     }
@@ -126,6 +143,11 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
             result=deleteObject(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -140,12 +162,17 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
     @Override
     public boolean modifyPassword(String id,String password) {
         int result=0;
-        String sql="update account set ac_password=? where ac_id=?";
+        String sql="update Account set ac_password=? where ac_id=?";
         Object params[]={password,id};
         try {
             result=modifyObjectInformation(sql,params);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         return result==1;

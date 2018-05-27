@@ -4,6 +4,7 @@ import xyz.mfbrain.onlineshopping.bean.DishBean;
 import xyz.mfbrain.onlineshopping.dao.DishDaoImp;
 import xyz.mfbrain.onlineshopping.dao.IdishDao;
 import xyz.mfbrain.onlineshopping.utils.DAOFactory;
+import xyz.mfbrain.onlineshopping.utils.PageModle;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -88,6 +89,19 @@ public class DishService {
         return this.deleteDish(dishid,stid);
     }
 
+    /**
+     * 分页显示方法
+     * @param pageNo 当前页码
+     * @param pageSize 每页显示的item数量
+     * @param stid 商户id
+     * @return 分好也的数据模型
+     */
+    public PageModle<DishBean> showDishInPages(int pageNo,int pageSize,String stid){
+        int realPageNo=(pageNo-1)*pageSize;
+        ArrayList<DishBean> dishes=dishDao.findDishesForPageList(realPageNo,pageSize,stid);
+        PageModle<DishBean> pagelist=new PageModle<>(dishDao.getDishNum(stid),pageNo,pageSize,dishes);
+        return pagelist;
+    }
 
 
 
