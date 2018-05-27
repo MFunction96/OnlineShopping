@@ -12,18 +12,18 @@ import java.util.Objects;
  **/
 
 public class DishorderBean {
-    private String inId=" ";
-    private String stid=" ";
-    private String stname=" ";
-    private String customerid=" ";
-    private String acName=" ";
-    private BigDecimal inTotalprice=BigDecimal.valueOf(0);
-    private String inDesc=" ";
-    private String inRemark=" ";
-    private String inStatus=" ";
-    private String acPhone=" ";
-    private String acAddress=" ";
-    private Timestamp inOrdertime=Timestamp.valueOf("1870-1-1 0:0:0");
+    private String inId = " ";
+    private String stid = " ";
+    private String stname = " ";
+    private String customerid = " ";
+    private String acName = " ";
+    private BigDecimal inTotalprice = BigDecimal.valueOf(0);
+    private String inDesc = " ";
+    private String inRemark = " ";
+    private String inStatus = " ";
+    private String acPhone = " ";
+    private String acAddress = " ";
+    private Timestamp inOrdertime = Timestamp.valueOf("1870-1-1 0:0:0");
 
     public String getInId() {
         return inId;
@@ -121,5 +121,14 @@ public class DishorderBean {
         this.inOrdertime = inOrdertime;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof DishorderBean) {
+            var dish = (DishorderBean) obj;
+            return acAddress.equals(dish.acAddress) && acName.equals(dish.acName) && acPhone.equals(dish.acPhone) && customerid.equals(dish.customerid)
+                    && inDesc.equals(dish.inDesc) && inId.equals(dish.inId) && inOrdertime.equals(dish.inOrdertime) && inRemark.equals(dish.inRemark)
+                    && inStatus.equals(dish.inStatus) && inTotalprice.equals(dish.inTotalprice) && stid.equals(dish.stid) && stname.equals(dish.stname);
+        }
+        return false;
+    }
 }
