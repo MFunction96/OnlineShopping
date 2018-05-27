@@ -42,3 +42,6 @@ web/dist
 # Eclipse File
 .project
 .classpath
+
+# Project logs
+logs

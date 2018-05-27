@@ -1,7 +1,6 @@
 package xyz.mfbrain.onlineshopping.bean;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * @program: myshop
@@ -11,13 +10,13 @@ import java.util.Objects;
  **/
 
 public class OrderitemBean {
-    private String inId=" ";
-    private String itId=" ";
-    private String diId=" ";
-    private String diImage=" ";
-    private String diName=" ";
-    private int itAmmount=0;
-    private BigDecimal itTotalprice=BigDecimal.valueOf(0);
+    private String inId = " ";
+    private String itId = " ";
+    private String diId = " ";
+    private String diImage = " ";
+    private String diName = " ";
+    private int itAmmount = 0;
+    private BigDecimal itTotalprice = BigDecimal.valueOf(0);
 
     public String getInId() {
         return inId;
@@ -75,5 +74,13 @@ public class OrderitemBean {
         this.itTotalprice = itTotalprice;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof OrderitemBean) {
+            var item = (OrderitemBean) obj;
+            return diId.equals(item.diId) && diImage.equals(item.diImage) && diName.equals(item.diName)
+                    && inId.equals(item.inId) && itAmmount == item.itAmmount && itTotalprice.equals(item.itTotalprice) && itId.equals(item.itId);
+        }
+        return false;
+    }
 }

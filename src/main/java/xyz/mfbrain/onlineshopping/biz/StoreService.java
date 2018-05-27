@@ -1,9 +1,11 @@
 package xyz.mfbrain.onlineshopping.biz;
 
+import org.apache.catalina.Store;
 import xyz.mfbrain.onlineshopping.bean.StoreBean;
 import xyz.mfbrain.onlineshopping.dao.IStoreDao;
 import xyz.mfbrain.onlineshopping.dao.StoreDaoImp;
 import xyz.mfbrain.onlineshopping.utils.DAOFactory;
+import xyz.mfbrain.onlineshopping.utils.PageModle;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -36,7 +38,7 @@ public class StoreService {
      * @return 结果
      */
     public boolean isExist(String name){
-        return storeDao.findStoreByName(name)==null;
+        return storeDao.findStoreByName(name)!=null;
     }
 
     /**
@@ -83,6 +85,13 @@ public class StoreService {
      */
     public boolean deleteStore(String id ){
         return storeDao.deleteStoreByID(id);
+    }
+
+    public PageModle<StoreBean> findSroreInPages(int pageNo,int pageSize){
+        int realPageNo=(pageNo-1)*pageSize;
+        ArrayList<StoreBean> stores=storeDao.findStoresForPageList(realPageNo,pageSize);
+        PageModle<StoreBean> pagelist=new PageModle<>(storeDao.getStoreNum(),pageNo,pageSize,stores);
+        return pagelist;
     }
 
 }

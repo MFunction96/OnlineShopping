@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public interface IStoreDao {
     public ArrayList<StoreBean> findAllStore();
 
+    public ArrayList<StoreBean> findStoresForPageList(int startrow, int rownums);
+
     public StoreBean findStoreByName(String name);
 
     public boolean addStore(StoreBean store);

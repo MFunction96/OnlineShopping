@@ -1,7 +1,10 @@
 package xyz.mfbrain.onlineshopping.dao;
 
 import xyz.mfbrain.onlineshopping.bean.StoreBean;
+import xyz.mfbrain.onlineshopping.bean.logBean;
+import xyz.mfbrain.onlineshopping.utils.JsonUtil;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,6 +30,28 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
             stores=this.findAllObject(sql,StoreBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return stores;
+    }
+
+    @Override
+    public ArrayList<StoreBean> findStoresForPageList(int startrow, int rownums) {
+        ArrayList<StoreBean> stores=null;
+        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc from Store limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
+        try {
+            stores=this.findAllObject(sql,StoreBean.class);
+        } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return stores;
     }
@@ -45,6 +70,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
             store=(StoreBean) this.findObjectWithConditions(sql,params,StoreBean.class);
         } catch (SQLException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         return store;
@@ -64,6 +94,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -82,6 +117,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -100,6 +140,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
             result=this.deleteObject(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return result==1;
     }
@@ -116,6 +161,11 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
             count=this.getTotalObjectsNum(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                JsonUtil.SerializeObj(new logBean(e),logBean.class,"./log.json",true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
         return count;
     }

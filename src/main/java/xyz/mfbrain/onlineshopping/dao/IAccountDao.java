@@ -11,7 +11,7 @@ import xyz.mfbrain.onlineshopping.bean.AccountBean;
  **/
 
 public interface IAccountDao {
-    public AccountBean findAccount(String name, String password, int role);
+    public AccountBean findAccount(String name, int role);
 
     public AccountBean findAccountById(String id);
 

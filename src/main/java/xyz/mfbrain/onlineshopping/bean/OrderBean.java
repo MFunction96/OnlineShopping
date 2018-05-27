@@ -28,4 +28,13 @@ public class OrderBean {
     public void setDishorderBean(DishorderBean dishorderBean) {
         this.dishorderBean = dishorderBean;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof OrderBean) {
+            var order = (OrderBean) obj;
+            return orderItems.equals(order.orderItems) && dishorderBean.equals(order.dishorderBean);
+        }
+        return false;
+    }
 }
