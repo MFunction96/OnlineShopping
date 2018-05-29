@@ -29,7 +29,7 @@ public class AccountDaoImpTest {
 
     @Test
     public void findAccount() {
-        assertNotNull(accountDao.findAccount("Tom",1));
+        assertNotNull(accountDao.findAccount("Chris",2));
 
     }
 
@@ -40,7 +40,7 @@ public class AccountDaoImpTest {
 
     @Test
     public void findAccountByName() {
-        System.out.println(accountDao.findAccountByName("Tomas").getAcName());
+        System.out.println(accountDao.findAccountByName("Jack").getAcName());
 
     }
 
@@ -48,13 +48,13 @@ public class AccountDaoImpTest {
     public void addAccount() {
         AccountBean account=new AccountBean();
         account.setAcId(String.valueOf(uuid));
-        account.setAcName("Jack");
+        account.setAcName("Chris");
         account.setAcPassword("111111");
         account.setAcAddress("dsfadsdfhghfgfaf");
-        account.setAcBirthday(Date.valueOf("1998-1-1"));
-        account.setAcPhone("1212112446342112121");
+        account.setAcBirthday(Date.valueOf("1997-1-1"));
+        account.setAcPhone("121211242112121");
         account.setAcSex("男");
-        account.setAcRole(1);
+        account.setAcRole(2);
         assertEquals(true,accountDao.addAccount(account));
     }
 

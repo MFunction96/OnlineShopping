@@ -19,7 +19,7 @@ public class DishDaoImpTest {
     @Before
     public void setUp() throws Exception {
         dishDao=(DishDaoImp)DAOFactory.getDaoFactory().newInstance("DishDao");
-        stid="db9cdff2-f091-40a5-a85c-a15a1479ed06";
+        stid="39f451e5-6785-4f41-81d0-a395e11beca2";
     }
 
     @Test
