@@ -18,31 +18,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 order-md-1 ">
-            <form class="needs-validation" novalidate="">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">
-                            <span style="vertical-align: inherit;">
-                                <span style="vertical-align: inherit;">名字</span>
-                            </span>
-                        </label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                        <div class="invalid-feedback">
-                            Valid first name is required.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">
-                            <span style="vertical-align: inherit;">
-                                <span style="vertical-align: inherit;">姓</span>
-                            </span></label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                        <div class="invalid-feedback">
-                            Valid last name is required.
-                        </div>
-                    </div>
-                </div>
-
+            <form class="needs-validation" novalidate="" id="registerform" method="post">
                 <div class="mb-3">
                     <label for="username">
                         <span style="vertical-align: inherit;">
@@ -56,17 +32,30 @@
                                 </span>
                             </span>
                         </div>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email">
+                        <input type="text" class="form-control" id="username" placeholder="请输入用户名" required="">
+                        <label for="password">
                         <span style="vertical-align: inherit;">
-                            <span style="vertical-align: inherit;">电子邮件</span>
+                            <span style="vertical-align: inherit;">密码</span>
+                        </span>
+                        </label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="请输入密码" required="">
+
+                        </div>
+                        <label for="confirm_password">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">验证密码</span>
+                        </span>
+                        </label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="confirm_password" placeholder="请再次输入密码" required="">
+
+                        </div>
+                </div>
+                <div class="mb-3">
+                    <label for="birthday">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">生日</span>
                         </span>
                         <span class="text-muted">
                             <span style="vertical-align: inherit;">
@@ -75,111 +64,49 @@
                             </span>
                         </span>
                     </label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
-
+                    <input type="text" class="form-control" id="birthday" placeholder="格式如：1900-01-01或1900/01/01" >
+                    <label for="phone">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">手机号</span>
+                        </span>
+                    </label>
+                    <input type="phone" class="form-control" id="phone" placeholder="请输入你的手机号" required="">
+                    <div class="invalid-feedback">请输入你的手机号码</div>
                     <label for="address">
                         <span style="vertical-align: inherit;">
                             <span style="vertical-align: inherit;">地址</span>
                         </span>
                     </label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                    <input type="text" class="form-control" id="address" placeholder="例如XX区XX街XX楼XX号" required="">
                     <div class="invalid-feedback">
                         Please enter your shipping address.
                     </div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="address2">
-                        <span style="vertical-align: inherit;">
-                            <span style="vertical-align: inherit;">地址2 </span>
-                        </span>
-                        <span class="text-muted">
-                            <span style="vertical-align: inherit;">
-                                <span style="vertical-align: inherit;">（可选）</span>
-                            </span>
-                        </span>
-                    </label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
-
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">
                             <span style="vertical-align: inherit;">
-                                <span style="vertical-align: inherit;">国家</span>
+                                <span style="vertical-align: inherit;">您是</span>
                             </span>
                         </label>
                         <select class="custom-select d-block w-100" id="country" required="">
-                            <option value="">
-                                <span style="vertical-align: inherit;">
-                                    <span style="vertical-align: inherit;">选择...</span>
-                                </span>
-                            </option>
-                            <option>
-                                <span style="vertical-align: inherit;">
-                                    <span style="vertical-align: inherit;">美国</span>
-                                </span>
-                            </option>
+                            <option value="">先生</option>
+                            <option>女士</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
-                        </div>
+
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="state">
                             <span style="vertical-align: inherit;">
-                                <span style="vertical-align: inherit;">州</span>
+                                <span style="vertical-align: inherit;">您是</span>
                             </span>
                         </label>
                         <select class="custom-select d-block w-100" id="state" required="">
-                            <option value="">
-                                <span style="vertical-align: inherit;">
-                                    <span style="vertical-align: inherit;">选择...</span>
-                                </span>
-                            </option>
-                            <option>
-                                <span style="vertical-align: inherit;">
-                                    <span style="vertical-align: inherit;">加州</span>
-                                </span>
-                            </option>
+                            <option value="">订餐者</option>
+                            <option>商家</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Please provide a valid state.
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="zip">
-                            <span style="vertical-align: inherit;">
-                                <span style="vertical-align: inherit;">压缩</span>
-                            </span>
-                        </label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required="">
-                        <div class="invalid-feedback">
-                            Zip code required.
-                        </div>
                     </div>
                 </div>
-                <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <label class="custom-control-label" for="same-address">
-                        <span style="vertical-align: inherit;">
-                            <span style="vertical-align: inherit;">送货地址与我的帐单地址相同</span>
-                        </span><
-                        /label>
-                </div>
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">
-                        <span style="vertical-align: inherit;">
-                            <span style="vertical-align: inherit;">下次保存这些信息</span>
-                        </span>
-                    </label>
-                </div>
-                <hr class="mb-4">
                 <hr class="mb-4">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">
                     <span style="vertical-align: inherit;">

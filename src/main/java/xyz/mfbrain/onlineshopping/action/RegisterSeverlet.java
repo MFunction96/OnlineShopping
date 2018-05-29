@@ -1,6 +1,7 @@
 package xyz.mfbrain.onlineshopping.action;
 
 import xyz.mfbrain.onlineshopping.bean.AccountBean;
+import xyz.mfbrain.onlineshopping.biz.UserService;
 import xyz.mfbrain.onlineshopping.dao.IAccountDao;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class RegisterSeverlet extends HttpServlet {
-    IAccountDao accountDao=null;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AccountBean newaccount=new AccountBean();
@@ -30,6 +31,19 @@ public class RegisterSeverlet extends HttpServlet {
        newaccount.setAcSex( req.getParameter( "sex" ) );
        /*       * 1--商户       * 2--用户*/
        newaccount.setAcRole( Long.parseLong( req.getParameter( "role" ) ) );
-       accountDao.addAccount( newaccount );
+        UserService userService=new UserService();
+      Boolean add=userService.registerAccount( newaccount );
+      if(add){
+          System.out.println( "注册成功" );
+          resp.sendRedirect( "chooseRestaurant.jsp" );
+      }else {
+          System.out.println( "注册失败" );
+          req.getRequestDispatcher( "chooseRestaurant.jso" ).forward( req,resp );
+      }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost( req,resp );
     }
 }
