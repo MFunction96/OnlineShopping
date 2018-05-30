@@ -9,6 +9,16 @@ public class StoreBean {
   private String stPhone=" ";
   private String stDesc=" ";
 
+  public String getStImage() {
+    return stImage;
+  }
+
+  public void setStImage(String stImage) {
+    this.stImage = stImage;
+  }
+
+  private String stImage=" ";
+
 
   public String getStId() {
     return stId;

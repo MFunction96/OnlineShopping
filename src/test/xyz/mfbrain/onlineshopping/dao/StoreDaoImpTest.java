@@ -39,10 +39,11 @@ public class StoreDaoImpTest {
     public void addStore() {
         StoreBean storeBean=new StoreBean();
         storeBean.setStId(uuid.toString());
-        storeBean.setAcId("111111");
-        storeBean.setStName("锐捷脆皮鸡饭");
+        storeBean.setAcId("9b4f13ba-0cfd-4734-8a55-9d686c84d4f8");
+        storeBean.setStName("大姐脆皮鸡饭");
         storeBean.setStPhone("2131231");
         storeBean.setStDesc("kljfkladsjklfjsd");
+        storeBean.setStImage("dfasfascvxc");
         assertEquals(true,storeDao.addStore(storeBean));
     }
 
