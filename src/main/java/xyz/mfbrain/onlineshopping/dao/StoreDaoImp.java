@@ -111,7 +111,7 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public boolean modifyStoreInfor(StoreBean store) {
         int result=0;
-        String sql="update Store set st_name=?,st_phone=?,st_desc=?,,st_image=? where st_id=?";
+        String sql="update Store set st_name=?,st_phone=?,st_desc=?,st_image=? where st_id=?";
         Object params[]={store.getStName(),store.getStPhone(),store.getStDesc(),store.getStImage(),store.getStId()};
         try {
             result=this.modifyObjectInformation(sql,params);
