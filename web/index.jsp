@@ -38,9 +38,27 @@
                 <li class="nav-item">
                     <a class="nav-link">Contact</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.jsp">登陆</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.jsp">注册</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="chooseRestaurant.jsp">查看商家</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="chooseFood.jsp">选择食物</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="shoppingCart.jsp">购物车</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cashRegister.jsp">收银台</a>
+                </li>
             </ul>
-            @await Html.PartialAsync("_LoginPartial")
         </div>
+
     </div>
 </nav>
 <div class="container body-content">

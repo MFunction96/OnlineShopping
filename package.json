@@ -5,7 +5,9 @@
   "repository": "https://github.com/MFunction96/OnlineShopping",
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "bootstrap-validator": "^0.11.9",
     "jquery": "^3.3.1",
+    "jquery-validation": "^1.17.0",
     "popper.js": "^1.14.3"
   },
   "devDependencies": {
