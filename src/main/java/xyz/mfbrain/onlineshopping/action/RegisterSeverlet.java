@@ -5,6 +5,7 @@ import xyz.mfbrain.onlineshopping.biz.UserService;
 import xyz.mfbrain.onlineshopping.dao.IAccountDao;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+@WebServlet("/register")
 public class RegisterSeverlet extends HttpServlet {
 
     @Override
@@ -38,12 +39,13 @@ public class RegisterSeverlet extends HttpServlet {
           resp.sendRedirect( "chooseRestaurant.jsp" );
       }else {
           System.out.println( "注册失败" );
-          req.getRequestDispatcher( "chooseRestaurant.jso" ).forward( req,resp );
+          resp.sendRedirect( "register.jsp" );
       }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost( req,resp );
+        super.doGet(req,resp );
+        //doPost( req,resp );
     }
 }

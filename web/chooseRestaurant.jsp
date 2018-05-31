@@ -15,19 +15,9 @@
 
 </head>
 <body>
-
-<form>
-    <div onclick="getDIV()" ><a href="#">获得question下的所有div</a>v</div>
-    <div id="ceshi" onclick="createQuestion('question_danxuan')" ><a href="#">动态添加div</a></div>
-    <div>
-        <div id="sur" class="survey">
-            <div>
-                <div id="question" class="surveycontent"></div>
-            </div>
-        </div>
-    </div>
-</form>
-<script type="text/javascript"  src="js/list.js"></script>
+    <form method="get"action="chooseFood.jsp">
+        <button>点击商家</button>
+    </form>
 <script type="text/javascript" src="dist/bundle.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
 <script>queryTime()</script>
