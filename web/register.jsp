@@ -12,7 +12,13 @@
     <meta charset="UTF-8">
     <title>注册</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<script type="text/javascript">
+    function addUser() {
+        alert("提交事件!");
+        form.submit();
+        window.location="login.jsp";
+    }
+</script>
 </head>
 <body class="bg-light">
 <div class="container">
@@ -63,7 +69,6 @@
                                placeholder="请再次输入密码" required="">
 
                     </div>
-
                     <div class="mb-3">
                         <label for="birthday">
                         <span style="vertical-align: inherit;">
@@ -93,10 +98,10 @@
                                 <span style="vertical-align: inherit;">您是</span>
                             </span>
                                 </label>
-                                <select class="custom-select d-block w-100" id="sex" >
-                                    <option value="">性别</option>
-                                    <option>女士</option>
-                                    <option>先生</option>
+                                <select class="custom-select d-block w-100" name="sex" id="sex">
+                                    <option value="sex">性别</option>
+                                    <option value="w">女士</option>
+                                    <option value="m">先生</option>
                                 </select>
                             </div>
                             <div class="col-md-5 mb-3">
@@ -105,10 +110,10 @@
                                 <span style="vertical-align: inherit;">您是</span>
                             </span>
                                 </label>
-                                <select class="custom-select d-block w-100" id="role" >
-                                    <option value="">角色</option>
-                                    <option>商家</option>
-                                    <option>订餐者</option>
+                                <select class="custom-select d-block w-100" name="role" id="role">
+                                    <option value="0">角色</option>
+                                    <option value="1">订餐者</option>
+                                    <option value="2">商家</option>
                                 </select>
                             </div>
                         </div>
@@ -123,15 +128,15 @@
                             Please enter your shipping address.
                         </div>
                     </div>
-
                     <hr class="mb-4">
 
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="addUser()">
+                    <button class="btn btn-primary btn-lg btn-block" type="button" name="register" onclick="addUser()">
                     <span style="vertical-align: inherit;">
                         <span style="vertical-align: inherit;">注册</span>
                     </span>
                     </button>
                 </div>
+
             </form>
         </div>
     </div>
@@ -140,6 +145,5 @@
 <script type="text/javascript" src="./dist/bundle.js"></script>
 <script type="text/javascript" src="./js/site.js"></script>
 <script type="text/javascript" src="./js/formvaildation.js"></script>
-<script>queryTime()</script>
 </body>
 </html>

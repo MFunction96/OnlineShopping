@@ -43,13 +43,3 @@ $(function () {
         }
     })
 });
-function addUser() {
-    $('#addu').submit();
-    var flag=$('#addu').valid();
-    if(!flag){
-        //
-
-        return;
-    }
-
-}
