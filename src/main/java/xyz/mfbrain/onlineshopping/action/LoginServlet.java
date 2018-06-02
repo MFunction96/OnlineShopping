@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/login")
-public class LoginSeverlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName=req.getParameter( "username" );
@@ -27,6 +27,7 @@ public class LoginSeverlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost( req,resp );
+        // 重定向
+        req.getRequestDispatcher( "login.jsp" ).forward( req,resp );
     }
 }

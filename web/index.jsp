@@ -12,7 +12,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - MFBlog</title>
+    <title>OnlineShopping</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg flex-column fixed-top flex-md-row navbar-light bg-light">
@@ -26,35 +26,24 @@
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link">Home</a>
+                    <a class="nav-link" href="login">登陆</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Blog</a>
+                    <a class="nav-link" href="register">注册</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">About</a>
+                    <a class="nav-link" href="chooseRestaurant">查看商家</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Contact</a>
+                    <a class="nav-link" href="chooseFood">选择食物</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">登陆</a>
+                    <a class="nav-link" href="shoppingCart">购物车</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="register.jsp">注册</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="chooseRestaurant.jsp">查看商家</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="chooseFood.jsp">选择食物</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shoppingCart.jsp">购物车</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cashRegister.jsp">收银台</a>
+                    <a class="nav-link" href="cashRegister">收银台</a>
                 </li>
             </ul>
         </div>

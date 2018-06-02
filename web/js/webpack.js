@@ -8,4 +8,5 @@ require("expose-loader?$!jquery")
 import "jquery"
 import "bootstrap"
 import "jquery-validation"
-import ""
+import "holderjs"
+import "popper.js"

@@ -1,6 +1,6 @@
 $(function () {
     $("#addu").validate({
-        debug:true,
+        debug:false,
         rules:{
             username:{
                 required:true,
@@ -41,5 +41,6 @@ $(function () {
                 dateISO:"请输入正确格式的生日，如1900-01-01"
             }
         }
+
     })
 });

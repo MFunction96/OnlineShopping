@@ -32,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 order-md-1 ">
-            <form name="addu" id="addu" method="post">
+            <form name="addu" id="addu" method="post" action="register">
                 <div class="mb-3">
                     <label for="username">
                         <span style="vertical-align: inherit;">
@@ -129,14 +129,10 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-
-                    <button class="btn btn-primary btn-lg btn-block" type="button" name="register" onclick="addUser()">
-                    <span style="vertical-align: inherit;">
-                        <span style="vertical-align: inherit;">注册</span>
-                    </span>
-                    </button>
+                    <p>
+                        <input type="submit" name="submit">
+                    </p>
                 </div>
-
             </form>
         </div>
     </div>
