@@ -25,7 +25,7 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public ArrayList<StoreBean> findAllStore() {
         ArrayList<StoreBean> stores=null;
-        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc from Store";
+        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc,st_image StImage from Store";
         try {
             stores=this.findAllObject(sql,StoreBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -42,7 +42,7 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public ArrayList<StoreBean> findStoresForPageList(int startrow, int rownums) {
         ArrayList<StoreBean> stores=null;
-        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc from Store limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
+        String sql="select st_id StId,ac_id AcId,st_name StName,st_phone StPhone,st_desc StDesc,st_image StImage from Store limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
         try {
             stores=this.findAllObject(sql,StoreBean.class);
         } catch (InvocationTargetException | SQLException | InstantiationException | IllegalAccessException e) {
@@ -64,7 +64,7 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public StoreBean findStoreByName(String name) {
         StoreBean store=null;
-        String sql="select st_id StId,st_name StName,st_phone StPhone,st_desc StDesc from Store where st_name=?";
+        String sql="select st_id StId,st_name StName,st_phone StPhone,st_desc StDesc,st_image StImage from Store where st_name=?";
         Object params []={name};
         try {
             store=(StoreBean) this.findObjectWithConditions(sql,params,StoreBean.class);
@@ -88,8 +88,8 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public boolean addStore(StoreBean store) {
         int result=0;
-        String sql="insert into Store values(?,?,?,?,?)";
-        Object params [] ={store.getStId(),store.getAcId(),store.getStName(),store.getStPhone(),store.getStDesc()};
+        String sql="insert into Store values(?,?,?,?,?,?)";
+        Object params [] ={store.getStId(),store.getAcId(),store.getStName(),store.getStPhone(),store.getStDesc(),store.getStImage()};
         try {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
@@ -111,8 +111,8 @@ public class StoreDaoImp extends BaseDao implements IStoreDao {
     @Override
     public boolean modifyStoreInfor(StoreBean store) {
         int result=0;
-        String sql="update Store set st_name=?,st_phone=?,st_desc=? where st_id=?";
-        Object params[]={store.getStName(),store.getStPhone(),store.getStDesc(),store.getStId()};
+        String sql="update Store set st_name=?,st_phone=?,st_desc=?,st_image=? where st_id=?";
+        Object params[]={store.getStName(),store.getStPhone(),store.getStDesc(),store.getStImage(),store.getStId()};
         try {
             result=this.modifyObjectInformation(sql,params);
         } catch (SQLException e) {
