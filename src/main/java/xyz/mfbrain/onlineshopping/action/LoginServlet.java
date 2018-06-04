@@ -13,6 +13,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String userName=req.getParameter( "username" );
         String passWord=req.getParameter( "password" );
         UserService userService=new UserService();

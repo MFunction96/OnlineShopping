@@ -20,6 +20,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         AccountBean newaccount=new AccountBean();
        newaccount.setAcName(req.getParameter( "username" ));
        newaccount.setAcPassword(req.getParameter( "password" ));
