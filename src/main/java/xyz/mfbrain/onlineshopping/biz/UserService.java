@@ -49,6 +49,11 @@ public class UserService {
         return result;
     }
 
+    public AccountBean findAccountByName(String name,String password,int role){
+        AccountBean account=accountDao.findAccount(name,role);
+        return account;
+    }
+
     /**
      * 判断用户名是否存在
      * @param name
