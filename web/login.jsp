@@ -15,25 +15,25 @@
     <title>OnlineShopping</title>
 </head>
 <body class="text-center">
-<form class=" form-signin">
+<form class=" form-signin" method="post" action="login">
     <img  class="mb-4"src="/images/background01.jpg"alt width="72",height="72">
     <h1 class="h3 mb-3 font-weight-normal">
         <span style="vertical-align: inherit;">
             <span style="vertical-align: inherit">请登录</span>
         </span>
     </h1>
-    <label for="inputUsername" class="sr-only">
+    <label for="username" class="sr-only">
         <span style="vertical-align: inherit" >
             <span style="vertical-align: inherit">用户名</span>
         </span>
     </label>
-    <input  id="inputUsername" class="form-control"placeholder="请输入用户名" required autofocus>
-    <label for="inputPassword" class="sr-only">
+    <input  id="username" name="username" class="form-control"placeholder="请输入用户名" required autofocus>
+    <label for="password" class="sr-only">
         <span style="vertical-align: inherit;">
             <span style="vertical-align: inherit">密码</span>
         </span>
     </label>
-    <input type="password" id="inputPassword"class="form-control" placeholder="请输入密码"required>
+    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码"required>
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="rememner-me">

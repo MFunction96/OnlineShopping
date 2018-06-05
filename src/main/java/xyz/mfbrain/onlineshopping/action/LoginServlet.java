@@ -3,6 +3,7 @@ package xyz.mfbrain.onlineshopping.action;
 import xyz.mfbrain.onlineshopping.bean.AccountBean;
 import xyz.mfbrain.onlineshopping.biz.DishService;
 import xyz.mfbrain.onlineshopping.biz.UserService;
+import xyz.mfbrain.onlineshopping.utils.MD5EncryptUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -20,14 +22,24 @@ public class LoginServlet extends HttpServlet {
         String userName=req.getParameter( "username" );
         String passWord=req.getParameter( "password" );
         UserService userService=new UserService();
-        if(userService.vaidateAccount( userName,passWord,1 )){
-            System.out.println( "登陆成功" );
+        boolean result=false;
+        AccountBean account=userService.vaidateAccount( userName);
+        try {
+            result=MD5EncryptUtils.validPassword(passWord,account.getAcPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        if(result){
+            if(account.getAcRole()==1){
+                System.out.println( "登陆成功" );
+                resp.sendRedirect( "index.jsp" );
+            }else{
+                resp.sendRedirect("chooseRestaurant.jsp");
+            }
             HttpSession session=req.getSession();
-            AccountBean account=userService.findAccountByName(userName,passWord,1);
             session.setAttribute("user",account);
-            resp.sendRedirect( "chooseRestaurant.jsp" );
-        }else {
 
+        }else {
             System.out.println( "登录失败" );
         }
     }

@@ -32,27 +32,13 @@ public class UserService {
     /**
      * 验证用户
      * @param name 用户名
-     * @param password 密码
-     * @param role 角色
      * @return 验证结果
      */
-    public boolean vaidateAccount(String name,String password,int role){
-        boolean result=false;
-        AccountBean account=accountDao.findAccount(name,role);
-        try {
-            result= MD5EncryptUtils.validPassword(password,account.getAcPassword());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
+    public AccountBean vaidateAccount(String name){
+        return accountDao.findAccount(name);
     }
 
-    public AccountBean findAccountByName(String name,String password,int role){
-        AccountBean account=accountDao.findAccount(name,role);
-        return account;
-    }
+
 
     /**
      * 判断用户名是否存在
