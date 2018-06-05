@@ -23,7 +23,7 @@ public class UserServiceTest {
 
     @Test
     public void vaidateAccount() {
-        assertEquals(true,ser.vaidateAccount("Tomas","12345678",1));
+        assertNotNull(ser.vaidateAccount("Tomas"));
 
     }
 

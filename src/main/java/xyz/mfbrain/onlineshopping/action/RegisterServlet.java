@@ -20,6 +20,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         AccountBean newaccount=new AccountBean();
        newaccount.setAcName(req.getParameter( "username" ));
        newaccount.setAcPassword(req.getParameter( "password" ));
@@ -33,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
       Boolean add=userService.registerAccount( newaccount );
       if(add){
           System.out.println( "注册成功" );
-          resp.sendRedirect( "chooseRestaurant.jsp" );
+          resp.sendRedirect( "index.jsp" );
       }else {
           System.out.println( "注册失败" );
           resp.sendRedirect( "register.jsp" );
