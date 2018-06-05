@@ -27,10 +27,10 @@ public class StoreServiceTest {
     public void registerStore() {
         StoreBean store=new StoreBean();
         store.setStId(UUID.randomUUID().toString());
-        store.setAcId("46422b05-bf95-4372-978d-47bd5bf2d3d9");
-        store.setStName("老朴炸鸡");
+        store.setAcId("57ae69b5-9bf0-407f-888a-52853936b4e8");
+        store.setStName("大姐烤肉饭");
         store.setStPhone("3423446444242");
-        store.setStDesc("sadfjsadkfjkljk");
+        store.setStDesc("美味烤肉饭");
         assertEquals(true,service.registerStore(store));
     }
 

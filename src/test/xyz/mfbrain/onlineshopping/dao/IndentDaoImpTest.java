@@ -20,8 +20,8 @@ public class IndentDaoImpTest {
 
     @Before
     public void setUp() throws Exception {
-        stid="db9cdff2-f091-40a5-a85c-a15a1479ed06";
-        acid="a1a7c58a-9ec3-45e0-9141-c6196157c37e";
+        stid="2ce85a49-d4f1-4a9d-a827-1f6f2c129c77";
+        acid="0738c940-7c1b-49f6-8730-9cacf1e10e39";
         inid="bc51bbd7-64e0-4445-a884-62cd3e02db6c";
         indentDao=(IndentDaoImp)DAOFactory.getDaoFactory().newInstance("IndentDao");
     }
@@ -59,8 +59,8 @@ public class IndentDaoImpTest {
         indent.setInId(UUID.randomUUID().toString());
         indent.setStId(stid);
         indent.setCustomerid(acid);
-        indent.setInOrdertime(Timestamp.valueOf("2018-3-12 10:31:11"));
-        indent.setInTotalprice(BigDecimal.valueOf(10));
+        indent.setInOrdertime(Timestamp.valueOf("2018-3-12 18:31:11"));
+        indent.setInTotalprice(BigDecimal.valueOf(66));
         indent.setInStatus("确认");
         assertEquals(true,indentDao.addIndent(indent));
     }
