@@ -17,14 +17,7 @@ public class Restaurantservlet extends HttpServlet {
     private int pageSize=6;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        StoreService ss=new StoreService();
-        String search=req.getParameter("search");
-        StoreBean store=ss.searchStoreByName(search);
-        ArrayList<StoreBean> stores=new ArrayList<>();
-        stores.add(store);
-        req.setAttribute("stores",stores);
-        req.getRequestDispatcher( "chooseRestaurant.jsp" ).forward( req,resp );
+       doGet(req,resp);
 
     }
 
@@ -37,6 +30,10 @@ public class Restaurantservlet extends HttpServlet {
                 break;
             case "pagelist":
                 pageListView(req,resp);
+                break;
+            case "search":
+                searchStore(req,resp);
+                break;
         }
 
 
@@ -59,6 +56,17 @@ public class Restaurantservlet extends HttpServlet {
         req.setAttribute("stores",pagemodel.getList());
         req.setAttribute("pageModel",pagemodel);
         req.getRequestDispatcher("chooseRestaurant.jsp?pageNo="+pageNo+"&totalpages="+pagemodel.getTotalPages()).forward(req,resp);
+    }
+
+    private void searchStore(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        StoreService ss=new StoreService();
+        String search=req.getParameter("search");
+        StoreBean store=ss.searchStoreByName(search);
+        ArrayList<StoreBean> stores=new ArrayList<>();
+        stores.add(store);
+        req.setAttribute("stores",stores);
+        req.getRequestDispatcher( "chooseRestaurant.jsp" ).forward( req,resp );
     }
 
 }

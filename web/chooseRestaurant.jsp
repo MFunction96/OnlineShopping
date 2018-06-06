@@ -17,13 +17,14 @@
         <div class="container">
             <h1 class="jumbotron-heading">OnlineShopping</h1>
             <p class="lead text-muted">下面是搜索栏（摆设）+搜索键（摆设）view+edit button</p>
-            <form id="searchform" method="post" action="chooseRestaurant">
+            <form id="searchform" method="get" action="chooseRestaurant">
                 <div class="row">
                     <div class="col-md-10">
                         <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="搜索商家" aria-label="search">
+                        <input type="hidden" name="actiontype" id="actiontype" value="search">
                     </div>
                     <div class="col-md-1">
-                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</input>
+                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="搜索">
                     </div>
                 </div>
             </form>

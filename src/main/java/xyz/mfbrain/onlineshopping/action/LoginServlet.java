@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         if(result){
             HttpSession session=req.getSession();
             session.setAttribute("user",account);
-            if(account.getAcRole()==1){
+            if(account.getAcRole()==2){
                 System.out.println( "登陆成功" );
                resp.sendRedirect("index.jsp");
 
