@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 @WebServlet ("/chooseRestaurant")
 public class Restaurantservlet extends HttpServlet {
-    private int pageSize=1;
+    private int pageSize=6;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
