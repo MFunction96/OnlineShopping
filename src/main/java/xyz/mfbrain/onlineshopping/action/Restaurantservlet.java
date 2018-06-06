@@ -15,11 +15,20 @@ import java.util.ArrayList;
 public class Restaurantservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet( req,resp );
+        req.setCharacterEncoding("UTF-8");
+        StoreService ss=new StoreService();
+        String search=req.getParameter("search");
+        StoreBean store=ss.searchStoreByName(search);
+        ArrayList<StoreBean> stores=new ArrayList<>();
+        stores.add(store);
+        req.setAttribute("stores",stores);
+        req.getRequestDispatcher( "chooseRestaurant.jsp" ).forward( req,resp );
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         StoreService ss=new StoreService();
         ArrayList<StoreBean> stores=ss.getAllStores();
         req.setAttribute("stores",stores);
