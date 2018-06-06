@@ -32,7 +32,7 @@
                     </label>
                     <div class="col-sm-4">
                         <input id="storelogo" name="storelogo"  type="file">
-                        <p class="block">支持jpg、png格式，大小不超过5M</p>
+                        <p >支持jpg、png格式，大小不超过5M</p>
                     </div>
                     <label for="storename">
                         <span style="vertical-align: inherit;">

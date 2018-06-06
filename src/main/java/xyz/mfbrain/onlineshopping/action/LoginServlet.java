@@ -13,10 +13,12 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName=req.getParameter( "username" );
-        String passWord=req.getParameter( "password" );
+        String userName=req.getParameter( "inputUsername" );
+        String passWord=req.getParameter( "inputPassword" );
+        int role=Integer.valueOf( req.getParameter( "role" ) );
         UserService userService=new UserService();
-        if(userService.vaidateAccount( userName,passWord,1 )){
+        Boolean login=userService.vaidateAccount( userName,passWord,role );
+        if(login){
             System.out.println( "登陆成功" );
             resp.sendRedirect( "chooseRestaurant.jsp" );
         }else {

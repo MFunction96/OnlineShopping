@@ -23,6 +23,7 @@ public class SRegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         StoreBean storeBean=new StoreBean();
         HttpSession session=req.getSession();
         storeBean.setStName( req.getParameter( "storename" ) );
