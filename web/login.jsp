@@ -15,7 +15,8 @@
     <title>OnlineShopping</title>
 </head>
 <body class="text-center">
-<form class=" form-signin">
+<form class=" form-signin"
+>
     <img  class="mb-4"src="/images/background01.jpg"alt width="72",height="72">
     <h1 class="h3 mb-3 font-weight-normal">
         <span style="vertical-align: inherit;">

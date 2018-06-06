@@ -31,7 +31,7 @@
                     <a class="nav-link" href="login">登陆</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="register">注册</a>
+                    <a class="nav-link" href="uregister">注册</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="chooseRestaurant">查看商家</a>

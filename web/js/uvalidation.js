@@ -19,6 +19,9 @@ $(function () {
             },
             birthday:{
                 dateISO:true
+            },
+            role:{
+                min:1
             }
         },
         messages:{
@@ -39,6 +42,9 @@ $(function () {
             },
             birthday:{
                 dateISO:"请输入正确格式的生日，如1900-01-01"
+            },
+            role:{
+              min:"请选择您的身份"
             }
         }
 

@@ -10,15 +10,8 @@
 <html lang="en" class="translated-ltr">
 <head>
     <meta charset="UTF-8">
-    <title>注册</title>
+    <title>注册-订餐者</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script type="text/javascript">
-    function addUser() {
-        alert("提交事件!");
-        form.submit();
-        window.location="login.jsp";
-    }
-</script>
 </head>
 <body class="bg-light">
 <div class="container">
@@ -32,7 +25,8 @@
     </div>
     <div class="row">
         <div class="col-md-12 order-md-1 ">
-            <form name="addu" id="addu" method="post" action="register">
+            <form name="addu" id="addu" method="post" action="uregister">
+
                 <div class="mb-3">
                     <label for="username">
                         <span style="vertical-align: inherit;">
@@ -88,7 +82,7 @@
                             <span style="vertical-align: inherit;">手机号</span>
                         </span>
                         </label>
-                        <input type="phone" name="phone" class="form-control" id="phone" placeholder="请输入你的手机号"
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="请输入你的手机号"
                                required="">
                         <div class="invalid-feedback">请输入你的手机号码</div>
                         <div class="row">
@@ -112,8 +106,8 @@
                                 </label>
                                 <select class="custom-select d-block w-100" name="role" id="role">
                                     <option value="0">角色</option>
-                                    <option value="1">订餐者</option>
-                                    <option value="2">商家</option>
+                                    <option value="1">商家</option>
+                                    <option value="2">订餐者</option>
                                 </select>
                             </div>
                         </div>
@@ -140,6 +134,6 @@
 
 <script type="text/javascript" src="./dist/bundle.js"></script>
 <script type="text/javascript" src="./js/site.js"></script>
-<script type="text/javascript" src="./js/formvaildation.js"></script>
+<script type="text/javascript" src="js/uvalidation.js"></script>
 </body>
 </html>
