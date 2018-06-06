@@ -22,18 +22,18 @@
             <span style="vertical-align: inherit">请登录</span>
         </span>
     </h1>
-    <label for="inputUsername" class="sr-only">
+    <label for="username" class="sr-only">
         <span style="vertical-align: inherit" >
             <span style="vertical-align: inherit">用户名</span>
         </span>
     </label>
-    <input  id="inputUsername" name="inputUsername" class="form-control"placeholder="请输入用户名" required autofocus>
-    <label for="inputPassword" class="sr-only">
+    <input  id="username" name="username" class="form-control"placeholder="请输入用户名" required autofocus>
+    <label for="password" class="sr-only">
         <span style="vertical-align: inherit;">
             <span style="vertical-align: inherit">密码</span>
         </span>
     </label>
-    <input type="password" id="inputPassword"name="inputPassword" class="form-control" placeholder="请输入密码"required>
+    <input type="password" id="password"name="password" class="form-control" placeholder="请输入密码"required>
     <select class="custom-select d-block w-100" name="role" id="role">
         <option value="0">角色</option>
         <option value="1">商家</option>
