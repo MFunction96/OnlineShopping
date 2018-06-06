@@ -23,14 +23,13 @@ public class AccountDaoImp extends BaseDao implements IAccountDao {
      * 根据用户名、密码以及用户角色查找用户
      * 可用于用户登录、修改密码
      * @param name  用户名
-     * @param role 角色
      * @return 只包含用户名、密码和角色信息的用户对象
      */
     @Override
-    public AccountBean findAccount(String name,int role)  {
+    public AccountBean findAccount(String name)  {
         AccountBean accountBean=null;
-        String sql="select ac_id AcId,ac_name AcName,ac_password AcPassword from Account where ac_name=? and ac_role=?";
-        Object [] conditions={name,role};
+        String sql="select ac_id AcId,ac_name AcName,ac_password AcPassword,ac_role AcRole from Account where ac_name=?";
+        Object [] conditions={name};
         accountBean = getAccountBean( sql, conditions);
         return accountBean;
     }

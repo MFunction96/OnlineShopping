@@ -20,9 +20,9 @@ public class IndentItemDaoImpTest {
     @Before
     public void setUp() throws Exception {
         indentItemDao=(IndentItemDaoImp)DAOFactory.getDaoFactory().newInstance("IndentItemDao");
-        diid1="0fda5160-ec74-4e68-9190-95639c28b765";
-        diid2="2681f39f-9b02-4c89-baf2-29c968ca6b32";
-        inid="bc51bbd7-64e0-4445-a884-62cd3e02db6c";
+        diid1="10b625e9-19d2-4f5c-8985-7646bbca49e0";
+        diid2="d03dd6fb-9b79-4b29-8580-19c14d3e174a";
+        inid="e490be76-0fa8-4123-9263-aa17ca3ad74f";
 
     }
 
@@ -42,8 +42,8 @@ public class IndentItemDaoImpTest {
         item.setItId(UUID.randomUUID().toString());
         item.setDiId(diid2);
         item.setInId(inid);
-        item.setItAmmount(4);
-        item.setItTotalprice(BigDecimal.valueOf(56));
+        item.setItAmmount(1);
+        item.setItTotalprice(BigDecimal.valueOf(12));
         assertEquals(true,indentItemDao.addIndentItem(item));
     }
 }

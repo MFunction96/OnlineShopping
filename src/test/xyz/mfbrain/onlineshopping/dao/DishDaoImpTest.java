@@ -19,7 +19,7 @@ public class DishDaoImpTest {
     @Before
     public void setUp() throws Exception {
         dishDao=(DishDaoImp)DAOFactory.getDaoFactory().newInstance("DishDao");
-        stid="39f451e5-6785-4f41-81d0-a395e11beca2";
+        stid="2ce85a49-d4f1-4a9d-a827-1f6f2c129c77";
     }
 
     @Test
@@ -51,12 +51,12 @@ public class DishDaoImpTest {
     public void addDish() {
         DishBean dish=new DishBean();
         dish.setDiId(UUID.randomUUID().toString());
-        //dish.setDiDesc("沙拉烤肉饭");
-        dish.setDiDesc("dafafadsfadsff3fe");
+        dish.setDiDesc("烤肉饭");
+
         dish.setDiImage("dfafadf");
-        //dish.setDiName("沙拉烤肉饭");
-        dish.setDiName("千岛烤肉饭");
-        dish.setDiPrice(BigDecimal.valueOf(10.00));
+        dish.setDiName("黑椒烤肉饭");
+
+        dish.setDiPrice(BigDecimal.valueOf(16.00));
         dish.setDiStatus(1);
         assertEquals(true,dishDao.addDish(dish,stid));
 

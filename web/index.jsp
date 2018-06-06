@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
@@ -26,13 +27,6 @@
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="login">登陆</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="uregister">注册</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="chooseRestaurant">查看商家</a>
                 </li>
@@ -45,6 +39,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="cashRegister">收银台</a>
                 </li>
+                <c:choose>
+                    <c:when test="${user==null}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="login">欢迎，请登录</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register">注册</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register">欢迎 ${user.getAcName()}</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+
+
             </ul>
         </div>
 

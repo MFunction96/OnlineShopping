@@ -29,7 +29,7 @@ public class AccountDaoImpTest {
 
     @Test
     public void findAccount() {
-        assertNotNull(accountDao.findAccount("Chris",2));
+        assertNotNull(accountDao.findAccount("Chris"));
 
     }
 

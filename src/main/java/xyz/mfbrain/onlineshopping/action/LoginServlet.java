@@ -1,28 +1,45 @@
 package xyz.mfbrain.onlineshopping.action;
 
+import xyz.mfbrain.onlineshopping.bean.AccountBean;
+import xyz.mfbrain.onlineshopping.biz.DishService;
 import xyz.mfbrain.onlineshopping.biz.UserService;
+import xyz.mfbrain.onlineshopping.utils.MD5EncryptUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName=req.getParameter( "inputUsername" );
-        String passWord=req.getParameter( "inputPassword" );
-        int role=Integer.valueOf( req.getParameter( "role" ) );
+        req.setCharacterEncoding("UTF-8");
+        String userName=req.getParameter( "username" );
+        String passWord=req.getParameter( "password" );
         UserService userService=new UserService();
-        Boolean login=userService.vaidateAccount( userName,passWord,role );
-        if(login){
-            System.out.println( "登陆成功" );
-            resp.sendRedirect( "chooseRestaurant.jsp" );
-        }else {
+        boolean result=false;
+        AccountBean account=userService.vaidateAccount( userName);
+        try {
+            result=MD5EncryptUtils.validPassword(passWord,account.getAcPassword());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        if(result){
+            if(account.getAcRole()==1){
+                System.out.println( "登陆成功" );
+                resp.sendRedirect( "index.jsp" );
+            }else{
+                resp.sendRedirect("chooseRestaurant.jsp");
+            }
+            HttpSession session=req.getSession();
+            session.setAttribute("user",account);
 
+        }else {
             System.out.println( "登录失败" );
         }
     }
