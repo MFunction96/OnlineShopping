@@ -27,6 +27,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-catalina:9.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jsp-api:9.0.8" level="project" />
