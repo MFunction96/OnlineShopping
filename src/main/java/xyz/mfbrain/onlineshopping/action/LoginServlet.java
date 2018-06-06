@@ -1,9 +1,9 @@
 package xyz.mfbrain.onlineshopping.action;
 
 import xyz.mfbrain.onlineshopping.bean.AccountBean;
-import xyz.mfbrain.onlineshopping.biz.DishService;
 import xyz.mfbrain.onlineshopping.biz.UserService;
 import xyz.mfbrain.onlineshopping.utils.MD5EncryptUtils;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,14 +30,16 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
         if(result){
+            HttpSession session=req.getSession();
+            session.setAttribute("user",account);
             if(account.getAcRole()==1){
                 System.out.println( "登陆成功" );
-                resp.sendRedirect( "index.jsp" );
+               resp.sendRedirect("index.jsp");
+
             }else{
                 resp.sendRedirect("chooseRestaurant.jsp");
             }
-            HttpSession session=req.getSession();
-            session.setAttribute("user",account);
+
 
         }else {
             System.out.println( "登录失败" );

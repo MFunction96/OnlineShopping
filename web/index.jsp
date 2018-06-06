@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="chooseRestaurant">查看商家</a>
+                    <a class="nav-link" href="chooseRestaurant?actiontype=show">查看商家</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="chooseFood">选择食物</a>
