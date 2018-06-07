@@ -31,17 +31,19 @@ public class SRegisterServlet extends HttpServlet {
         storeBean.setStDesc(req.getParameter( "sdesc" ));
         storeBean.setAcId(String.valueOf( session.getAttribute( "acid" ) ) );
         storeBean.setStImage( req.getParameter( "storelogo" ) );
-       try {
-           ImageUtil.Upload( req,this,req.getParameter( "storelogo" ) );
+
+        StoreService storeService=new StoreService();
+        Boolean add=storeService.registerStore( storeBean );
+        try {
+            ImageUtil.Upload( req,this,storeBean.getStId() );
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("标志上传失败！");
             resp.sendRedirect( "sregister.jsp" );
         }
-        StoreService storeService=new StoreService();
-        Boolean add=storeService.registerStore( storeBean );
         if(add){
             System.out.println( "注册成功" );
+            session.setAttribute( "stid" ,storeBean.getStId());
             resp.sendRedirect( "chooseFood.jsp" );
 
         }else {
