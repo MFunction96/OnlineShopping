@@ -118,9 +118,7 @@
                         </label>
                         <input type="text" name="address" class="form-control" id="address" placeholder="例如XX区XX街XX楼XX号"
                                required="">
-                        <div class="invalid-feedback">
-                            Please enter your shipping address.
-                        </div>
+
                     </div>
                     <hr class="mb-4">
                     <p>
