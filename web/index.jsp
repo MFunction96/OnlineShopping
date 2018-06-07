@@ -28,7 +28,7 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="chooseRestaurant">查看商家</a>
+                    <a class="nav-link" href="chooseRestaurant?actiontype=show">查看商家</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="chooseFood">选择食物</a>
@@ -42,7 +42,7 @@
                 <c:choose>
                     <c:when test="${user==null}">
                         <li class="nav-item">
-                            <a class="nav-link" href="login">欢迎，请登录</a>
+                            <a class="nav-link" href="login?code=1">欢迎，请登录</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="register">注册</a>
@@ -50,7 +50,10 @@
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
-                            <a class="nav-link" href="register">欢迎 ${user.getAcName()}</a>
+                            <a class="nav-link">欢迎 ${user.getAcName()}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login?code=2">注销</a>
                         </li>
                     </c:otherwise>
                 </c:choose>

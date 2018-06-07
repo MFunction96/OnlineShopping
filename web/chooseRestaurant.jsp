@@ -17,21 +17,19 @@
         <div class="container">
             <h1 class="jumbotron-heading">OnlineShopping</h1>
             <p class="lead text-muted">下面是搜索栏（摆设）+搜索键（摆设）view+edit button</p>
-            <form id="searchform" method="post" action="chooseRestaurant">
+            <form id="searchform" method="get" action="chooseRestaurant">
                 <div class="row">
                     <div class="col-md-10">
                         <input class="form-control mr-sm-2" type="text" name="search" id="search" placeholder="搜索商家" aria-label="search">
+                        <input type="hidden" name="actiontype" id="actiontype" value="search">
                     </div>
                     <div class="col-md-1">
-                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</input>
+                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="搜索">
                     </div>
                 </div>
             </form>
         </div>
     </section>
-
-
-
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row">
@@ -65,6 +63,28 @@
             </div>
         </div>
     </div>
+    <table align="center">
+        <tbody>
+        <tr>
+            <td  height="2">
+                <div align="left">
+                    <span style="color: #000000; ">&nbsp;共&nbsp${param.totalpages}&nbsp页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span style="color: #000000; ">当前第</span>&nbsp
+                    <span style="color: #000000; ">${param.pageNo}</span>&nbsp
+                    <span style="color: #000000; ">页</span>
+                </div>
+            </td>
+            <td  >
+                <div align="center">
+                    <a name="btnTopPage"  id="btnTopPage" href="chooseRestaurant?actiontype=pagelist&pageNo=1" title="首页">|&lt;&lt; </a>&nbsp;
+                    <a name="btnPreviousPage"  id="btnPreviousPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getPrePage()}" title="上页"> &lt;  </a>&nbsp;
+                    <a name="btnNextPage"  id="btnNextPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getNextPage()}" title="下页">  &gt; </a>&nbsp;
+                    <a name="btnBottomPage"  id="btnBottomPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getLastPage()}" title="尾页"> &gt;&gt;|</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </main>
 <script type="text/javascript" src="dist/bundle.js"></script>
