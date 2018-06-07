@@ -31,13 +31,13 @@ public class SRegisterServlet extends HttpServlet {
         storeBean.setStDesc(req.getParameter( "sdesc" ));
         storeBean.setAcId(String.valueOf( session.getAttribute( "acid" ) ) );
         storeBean.setStImage( req.getParameter( "storelogo" ) );
-       /*try {
-           ImageUtil.Upload( req,req.getParameter( "storelogo" ) );
+       try {
+           ImageUtil.Upload( req,this,req.getParameter( "storelogo" ) );
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("标志上传失败！");
             resp.sendRedirect( "sregister.jsp" );
-        }*/
+        }
         StoreService storeService=new StoreService();
         Boolean add=storeService.registerStore( storeBean );
         if(add){
