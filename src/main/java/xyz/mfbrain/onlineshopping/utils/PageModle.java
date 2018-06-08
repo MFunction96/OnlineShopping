@@ -13,7 +13,7 @@ public class PageModle<T> {
 
 
     private int totalRecords;  //全部记录数
-    private int pageNo;  //当前页码
+    private int pageNo=1;  //当前页码
     private int pageSize;  //每页的记录数
     private List<T> list; //每页数据项数组
 
@@ -44,7 +44,7 @@ public class PageModle<T> {
      * 转到最后一页
      * @return
      */
-    public int getLastpage(){
+    public int getLastPage(){
         return getTotalPages();
     }
 

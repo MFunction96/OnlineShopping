@@ -32,7 +32,7 @@ public class StoreDaoImpTest {
 
     @Test
     public void findStoreByName() {
-        System.out.println(storeDao.findStoreByName("锐捷烤肉饭").getStId());
+        System.out.println(storeDao.findStoreByName("大姐烤肉饭").getStId());
     }
 
     @Test
