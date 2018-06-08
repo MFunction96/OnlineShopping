@@ -23,7 +23,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand">MFBlog</a>
+            <a class="navbar-brand">OnlineShop</a>
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -68,7 +68,6 @@
     @RenderBody()
     <hr/>
     <footer class="text-center">
-        <p>Power by ASP.NET Core 2.0</p>
         <p>Copyright &copy; 2016 - 2018 MFBlog</p>
         <p>All Right Reserved</p>
         <p id="ServerTime"></p>

@@ -22,6 +22,8 @@ public interface IdishOrderDao {
 
     public ArrayList<DishorderBean> findDishOrderByAcountId(String acid);
 
+    public ArrayList<DishorderBean> findDishOrderInPageForA(String acid,int startrow, int rownums);
+
     public int getDishOrderNumByStId(String stid);
 
     public int getDishOrderNumByDateAndStid(String startDate,String endDate,String stid);

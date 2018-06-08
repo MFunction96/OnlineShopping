@@ -4,6 +4,7 @@ import org.apache.tomcat.jni.Time;
 import org.junit.Before;
 import org.junit.Test;
 import xyz.mfbrain.onlineshopping.bean.*;
+import xyz.mfbrain.onlineshopping.utils.PageModle;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -100,6 +101,14 @@ public class OrderServiceTest {
         order.setOrderItems(items);
         assertEquals(true,ser.addOrder(order));
 
+    }
+
+    @Test
+    public void findOrders(){
+        String acid="0738c940-7c1b-49f6-8730-9cacf1e10e39";
+        OrderService orderService=new OrderService();
+        PageModle<OrderBean> test=orderService.findOrdersInPagesForA(acid,1,3);
+        assertNotNull(test);
     }
 
 

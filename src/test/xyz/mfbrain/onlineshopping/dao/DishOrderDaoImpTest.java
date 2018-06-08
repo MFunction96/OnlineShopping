@@ -17,7 +17,7 @@ public class DishOrderDaoImpTest {
     @Before
     public void setUp() throws Exception {
         stid="db9cdff2-f091-40a5-a85c-a15a1479ed06";
-        acid="a1a7c58a-9ec3-45e0-9141-c6196157c37e";
+        acid="0738c940-7c1b-49f6-8730-9cacf1e10e39";
         dao=(DishOrderDaoImp)DAOFactory.getDaoFactory().newInstance("DishOrderDao");
     }
 
@@ -81,6 +81,16 @@ public class DishOrderDaoImpTest {
     @Test
     public void getDishOrderNumByDateAndAcid() {
         System.out.println(dao.getDishOrderNumByDateAndAcid("2018-4-12","2018-5-15",acid));
+
+    }
+
+    @Test
+    public void finddish(){
+        ArrayList<DishorderBean> ordes=dao.findDishOrderInPageForA(acid,0,3);
+        for (DishorderBean dish:ordes
+             ) {
+            System.out.println(dish.getInId());
+        }
     }
 
     @Test
