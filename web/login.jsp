@@ -16,7 +16,7 @@
 
 
 </head>
-<body>
+<body class="text-center" rlt="1">
 <style>
     body
     {
@@ -25,9 +25,7 @@
     }
 </style>
 
-
-<span class="align-middle">
-    <div class="container body-content">
+<div class="container body-content">
         <div align="center" >
             <img src="images/logo.png">
             <form class=" form-signin" method="post" action="login" style="vertical-align: center" >
@@ -66,7 +64,7 @@
             </form>
         </div>
     </div>
-</span>
+
 
 
 
