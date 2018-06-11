@@ -11,12 +11,11 @@
 
 </head>
 <body>
-
 <main role="main" class="container">
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">OnlineShopping</h1>
-            <p class="lead text-muted">下面是搜索栏（摆设）+搜索键（摆设）view+edit button</p>
+            <img src="images/logo.png">
+            <p class="lead text-muted">      </p>
             <form id="searchform" method="get" action="chooseRestaurant">
                 <div class="row">
                     <div class="col-md-10">
