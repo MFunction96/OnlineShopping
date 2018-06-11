@@ -3,6 +3,7 @@ package xyz.mfbrain.onlineshopping.biz;
 import xyz.mfbrain.onlineshopping.bean.*;
 import xyz.mfbrain.onlineshopping.dao.*;
 import xyz.mfbrain.onlineshopping.utils.DAOFactory;
+import xyz.mfbrain.onlineshopping.utils.PageModle;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -124,12 +125,29 @@ public class OrderService  {
                 dishorders) {
             OrderBean order=new OrderBean();
             ArrayList<OrderitemBean> orderitems = orderItemDao.findAllOrderItems(dishorder.getInId());
-            order.setDishorderBean(dishorder);
-            order.setOrderItems(orderitems);
-            orders.add(order);
+            if(orderitems!=null&&dishorder!=null){
+                order.setDishorderBean(dishorder);
+                order.setOrderItems(orderitems);
+                orders.add(order);
+            }
+
 
         }
         return orders;
+    }
+
+
+    public PageModle<OrderBean> findOrdersInPagesForA(String acid,int pageNo,int pageSize){
+        int realPageNo=(pageNo-1)*pageSize;
+        try {
+            dishOrderDao=(DishOrderDaoImp)DAOFactory.getDaoFactory().newInstance("DishOrderDao");
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+        ArrayList<DishorderBean> dishorders=dishOrderDao.findDishOrderInPageForA(acid,realPageNo,pageSize);
+        ArrayList<OrderBean> orders=combineOrderAndItem(dishorders);
+        PageModle<OrderBean> pagelist=new PageModle<>(dishOrderDao.getDishOrderNumByAcId(acid),pageNo,pageSize,orders);
+        return pagelist;
     }
 
     /**

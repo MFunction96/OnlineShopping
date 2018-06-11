@@ -125,6 +125,16 @@ public class DishOrderDaoImp extends BaseDao implements IdishOrderDao {
         return orders;
     }
 
+    @Override
+    public ArrayList<DishorderBean> findDishOrderInPageForA(String acid, int startrow, int rownums) {
+        ArrayList<DishorderBean> orders=null;
+        String sql="select In_id InId,St_id Stid,St_name Stname,Customerid,Ac_name AcName,In_totalprice InTotalprice," +
+                "In_desc InDesc,In_remark InRemark,In_status InStatus,Ac_phone AcPhone,Ac_address AcAddress,In_ordertime " +
+                "InOrdertime from DishOrder where Customerid="+"'"+acid+"'"+" limit "+String.valueOf(startrow)+","+String.valueOf(rownums);
+        orders=getDishorderBeans(orders,sql);
+        return orders;
+    }
+
     /**
      * 获得订单数量（商户）
      * @param stid 店铺id

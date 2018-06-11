@@ -14,49 +14,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>OnlineShopping</title>
 </head>
-<body class="text-center">
-<form class=" form-signin" method="post" action="login">
-    <img  class="mb-4"src="/images/background01.jpg"alt width="72",height="72">
-    <h1 class="h3 mb-3 font-weight-normal">
+<body class="text-center" >
+<style>
+    body
+    {
+        background: url('images/background2.jpg');
+        background-size: cover;
+    }
+</style>
+<div align="center">
+    <form class=" form-signin" method="post" action="login" >
+        <img  class="mb-4"src="/images/background2.jpg"alt width="72",height="72">
+        <h1 class="h3 mb-3 font-weight-normal">
         <span style="vertical-align: inherit;">
             <span style="vertical-align: inherit">请登录</span>
         </span>
-    </h1>
-    <label for="username" class="sr-only">
+        </h1>
+        <label for="username" class="sr-only">
         <span style="vertical-align: inherit" >
             <span style="vertical-align: inherit">用户名</span>
         </span>
-    </label>
-    <input  id="username" name="username" class="form-control"placeholder="请输入用户名" required autofocus>
-    <label for="password" class="sr-only">
+        </label>
+        <input  id="username" name="username" class="form-control"placeholder="请输入用户名" required autofocus>
+        <label for="password" class="sr-only">
         <span style="vertical-align: inherit;">
             <span style="vertical-align: inherit">密码</span>
         </span>
-    </label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码"required>
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="rememner-me">
-            <span style="vertical-align: inherit;">
+        </label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码"required>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="rememner-me">
+                <span style="vertical-align: inherit;">
                 <span style="vertical-align: inherit">记住密码</span>
             </span>
-        </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
         <span style="vertical-align: inherit;">
                 <span style="vertical-align: inherit">登录</span>
             </span>
-    </button>
-    <div class="container body-content">
-        <hr/>
-        <footer class="text-center">
-            <p>Power by ASP.NET Core 2.0</p>
-            <p>Copyright &copy; 2016 - 2018 MFBlog</p>
-            <p>All Right Reserved</p>
-            <p id="ServerTime"></p>
-        </footer>
-    </div>
-</form>
+        </button>
+    </form>
+</div>
+
+<div class="container body-content">
+    <hr/>
+    <footer class="text-center">
+        <p>Power by ASP.NET Core 2.0</p>
+        <p>Copyright &copy; 2016 - 2018 MFBlog</p>
+        <p>All Right Reserved</p>
+        <p id="ServerTime"></p>
+    </footer>
+</div>
 
 <script type="text/javascript" src="dist/bundle.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
