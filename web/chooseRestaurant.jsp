@@ -11,12 +11,63 @@
 
 </head>
 <body>
-
 <main role="main" class="container">
+    <nav class="navbar navbar-expand-lg flex-column fixed-top flex-md-row navbar-light bg-light" >
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <img src="images/logo.png" width="60" height="30">
+            </div>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="chooseRestaurant?actiontype=show">查看商家</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chooseFood">选择食物</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cashRegister">收银台</a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <img src="images/icon/people.png" height="25" width="25">
+                    </li>
+                    <c:choose>
+                        <c:when test="${user==null}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="login?code=1" >登录</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register">注册</a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login?code=2">${user.getAcName()}</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <li class="nav-item">
+                        <img src="images/icon/cart.png" height="25" width="25">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="shoppingCart">购物车</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">OnlineShopping</h1>
-            <p class="lead text-muted">下面是搜索栏（摆设）+搜索键（摆设）view+edit button</p>
+            <img src="images/logo.png">
+            <p class="lead text-muted">      </p>
             <form id="searchform" method="get" action="chooseRestaurant">
                 <div class="row">
                     <div class="col-md-10">
