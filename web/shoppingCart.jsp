@@ -69,6 +69,25 @@
     </div>
 </nav>
 <div class="container body-content">
+    <div class="accordion" id="accordionExample">
+        <c:forEach var="dish" items="${dishes}">
+            <div class="card">
+                <div class="card-header" id="h${dish.getDishorderBean().getStid()}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#${dish.getDishorderBean().getStid()}" aria-expanded="true" aria-controls="${dish.getDishorderBean().getStid()}">
+                            ${dish.getDishorderBean().getStname()}
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="${dish.getDishorderBean().getStid()}" class="collapse show" aria-labelledby="h${dish.getDishorderBean().getStid()}" data-parent="#accordionExample">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item disabled">
