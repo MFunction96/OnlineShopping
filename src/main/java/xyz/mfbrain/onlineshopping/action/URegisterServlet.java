@@ -37,7 +37,7 @@ public class URegisterServlet extends HttpServlet {
       if(add){
           System.out.println( "注册成功" );
           if(role==2)
-          resp.sendRedirect( "chooseRestaurant.jsp" );
+          resp.sendRedirect( "login?code=1" );
           if(role==1)
           {
               HttpSession session=req.getSession();

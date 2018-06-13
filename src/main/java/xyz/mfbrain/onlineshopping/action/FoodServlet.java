@@ -18,116 +18,99 @@ import java.util.ArrayList;
 
 @WebServlet("/chooseFood")
 public class FoodServlet extends HttpServlet {
+    String stid;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req,resp);
+        doGet(req, resp);
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        if(req.getParameter("actype").equals("showfood")){
-           showFood(req,resp);
-        }else if(req.getParameter("actype").equals("addcart")){
-            addToShopCart(req,resp);
+        if (req.getParameter("actype").equals("showfood")) {
+            showFood(req, resp);
+        } else if (req.getParameter("actype").equals("addcart")) {
+            addToShopCart(req, resp);
+            resp.sendRedirect("chooseRestaurant?actiontype=show");
         }
-        req.getRequestDispatcher("chooseFood.jsp").forward(req,resp);
+
+
 
     }
 
 
-   private void showFood(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String s=req.getParameter("stid");
-       DishService dishService=new DishService();
-       StoreBean store=new StoreBean();
-       store.setStId(s);
-       store.setStName(req.getParameter("stname"));
-       store.setStImage(req.getParameter("stimg"));
-       store.setStDesc(req.getParameter("stdesc"));
-       ArrayList<DishBean> dishes=dishService.getAllDish(0,s);
-       req.setAttribute("dishes",dishes);
-       req.setAttribute("store",store);
-   }
+    private void showFood(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        stid = req.getParameter("stid");
+        DishService dishService = new DishService();
+        StoreBean store = new StoreBean();
+        store.setStId(stid);
+        store.setStName(req.getParameter("stname"));
+        store.setStImage(req.getParameter("stimg"));
+        store.setStDesc(req.getParameter("stdesc"));
+        store.setStPhone(req.getParameter("stphone"));
+        ArrayList<DishBean> dishes = dishService.getAllDish(0, stid);
+        req.setAttribute("dishes", dishes);
+        req.setAttribute("store", store);
+        req.getRequestDispatcher("chooseFood.jsp").forward(req,resp);
+    }
 
-   private void addToShopCart(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
-       req.setCharacterEncoding("UTF-8");
-       AccountBean user=(AccountBean) req.getSession().getAttribute("user");
-       OrderList shopCart=null;
-       DishorderBean newDishCart;
-       OrderBean newCart= null;
-       OrderitemBean newDishCartItem;
-       ArrayList<OrderitemBean> items;
-       String stid=req.getParameter("sid");
-       String filePath="./"+user.getAcId()+".json";
-       try {
-           shopCart = (OrderList) JsonUtil.DeserializeObj(filePath,OrderList.class);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-       if(shopCart==null){
-           shopCart=new OrderList();
-           newDishCart=makeNewDishOrder(req,user,stid);
-           newCart=new OrderBean();
-           newCart.setDishorderBean(newDishCart);
-           newDishCartItem=makeNewItem(req);
-           items=new ArrayList<>();
-           items.add(newDishCartItem);
-           newCart.setOrderItems(items);
-           shopCart.getList().add(newCart);
-           try {
-               JsonUtil.SerializeObj(shopCart,OrderList.class,filePath,false);
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
-       }else{
-           ArrayList<OrderBean> dishorders=shopCart.getList();
-           for (OrderBean order:
-                dishorders) {
-               String sid=order.getDishorderBean().getStid();
-               if(sid.equals(stid)){
-                   for (OrderitemBean item:order.getOrderItems()
-                        ) {
-                       if(item.getDiId().equals(req.getParameter("diid"))){
-                           item.setItAmmount(item.getItAmmount()+1);
-                       }else{
-                           newDishCartItem=makeNewItem(req);
-                           order.getOrderItems().add(newDishCartItem);
-                       }
-                   }
-               }else{
-                   newDishCart=makeNewDishOrder(req,user,stid);
-                   newCart=new OrderBean();
-                   newCart.setDishorderBean(newDishCart);
-                   newDishCartItem=makeNewItem(req);
-                   items=new ArrayList<>();
-                   items.add(newDishCartItem);
-                   newCart.setOrderItems(items);
-                   shopCart.getList().add(newCart);
-               }
-               
-           }
-       }
+    private void addToShopCart(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("UTF-8");
+        AccountBean user = (AccountBean) req.getSession().getAttribute("user");
+        DishorderBean dishOrder;
+        OrderBean shopCart = null;
+        OrderitemBean newDishCartItem;
+        ArrayList<OrderitemBean> items;
+        String filePath=this.getServletContext().getRealPath("/shopcart")+"/"+user.getAcId()+stid+".json";
+        try {
+            shopCart = (OrderBean) JsonUtil.DeserializeObj(filePath, OrderBean.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (shopCart == null) {
+            dishOrder = makeNewDishOrder(req, user, stid);
+            shopCart = new OrderBean();
+            shopCart.setDishorderBean(dishOrder);
+            newDishCartItem = makeNewItem(req);
+            items = new ArrayList<>();
+            items.add(newDishCartItem);
+            shopCart.setOrderItems(items);
+        } else {
+            for (int i=0;i<shopCart.getOrderItems().size();i++) {
+                OrderitemBean item=shopCart.getOrderItems().get(i);
+                if (item.getDiId().equals(req.getParameter("diid"))) {
+                    item.setItAmmount(item.getItAmmount() + 1);
+                } else {
+                    newDishCartItem = makeNewItem(req);
+                    shopCart.getOrderItems().add(newDishCartItem);
+                }
+            }
+        }
+        try {
+            JsonUtil.SerializeObj(shopCart, OrderBean.class, filePath, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
+    }
 
-   }
-
-   private DishorderBean makeNewDishOrder(HttpServletRequest req,AccountBean user,String stid) throws UnsupportedEncodingException {
-       req.setCharacterEncoding("UTF-8");
-       DishorderBean newDishOrder=new DishorderBean();
-       newDishOrder.setCustomerid(user.getAcId());
-       newDishOrder.setAcName(user.getAcName());
-       newDishOrder.setStid(stid);
-       newDishOrder.setStname(req.getParameter("sname"));
-       return newDishOrder;
-   }
+    private DishorderBean makeNewDishOrder(HttpServletRequest req, AccountBean user, String stid) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("UTF-8");
+        DishorderBean newDishOrder = new DishorderBean();
+        newDishOrder.setCustomerid(user.getAcId());
+        newDishOrder.setAcName(user.getAcName());
+        newDishOrder.setStid(stid);
+        newDishOrder.setStname(req.getParameter("sname"));
+        return newDishOrder;
+    }
 
 
     private OrderitemBean makeNewItem(HttpServletRequest req) throws UnsupportedEncodingException {
         req.setCharacterEncoding("UTF-8");
-        OrderitemBean newItem=new OrderitemBean();
+        OrderitemBean newItem = new OrderitemBean();
         newItem.setItAmmount(1);
         newItem.setDiId(req.getParameter("diid"));
         newItem.setDiName(req.getParameter("diname"));
@@ -135,10 +118,6 @@ public class FoodServlet extends HttpServlet {
         newItem.setItTotalprice(BigDecimal.valueOf(Double.parseDouble(req.getParameter("diprice"))));
         return newItem;
     }
-
-
-
-
 
 
 }

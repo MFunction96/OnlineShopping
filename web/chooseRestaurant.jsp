@@ -91,6 +91,7 @@
                                     <p class="card-text">描述：${store.getStDesc()}</p>
                                     <input type="hidden" name="stid" id="stid" value="${store.getStId()}">
                                     <input type="hidden" name="stname" id="stname" value="${store.getStName()}">
+                                    <input type="hidden" name="stphone" id="stphone" value="${store.getStPhone()}">
                                     <input type="hidden" name="stimg" id="stimg" value="${store.getStImage()}">
                                     <input type="hidden" name="stdesc" id="stdesc" value="${store.getStDesc()}">
                                     <input type="hidden" name="actype" id="actype" value="showfood">

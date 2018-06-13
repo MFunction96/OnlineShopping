@@ -64,6 +64,20 @@
 
     </div>
 </nav>
+    <section class="jumbotron">
+        <div class="container">
+            <div class="media">
+                <img class="mr-3 " src="${store.getStImage()}" alt="Generic placeholder image" width="180" height="180">
+                <div class="media-body">
+                    <h2>
+                        <p class="card-text">名称：${store.getStName()}</p>
+                    </h2>
+                    <p class="card-text">联系方式：${store.getStPhone()}</p>
+                    <p class="card-text">描述：${store.getStDesc()}</p>
+                </div>
+            </div>
+        </div>
+    </section>
 <div class="album py-5 bg-light">
     <div >
         <div class="row">
