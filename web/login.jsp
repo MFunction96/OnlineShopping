@@ -44,12 +44,17 @@
         <span style="vertical-align: inherit;">
             <span style="vertical-align: inherit">密码</span>
         </span>
-                </label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码"required>
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="rememner-me">
-                        <span style="vertical-align: inherit;">
+    </label>
+    <input type="password" id="password"name="password" class="form-control" placeholder="请输入密码"required>
+    <select class="custom-select d-block w-100" name="role" id="role">
+        <option value="0">角色</option>
+        <option value="1">商家</option>
+        <option value="2">订餐者</option>
+    </select>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="rememner-me">
+            <span style="vertical-align: inherit;">
                 <span style="vertical-align: inherit">记住密码</span>
             </span>
                     </label>

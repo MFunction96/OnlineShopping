@@ -10,13 +10,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/uregister")
+public class URegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,15 +30,23 @@ public class RegisterServlet extends HttpServlet {
         newaccount.setAcPhone( req.getParameter( "phone" ) );
        newaccount.setAcSex( req.getParameter( "sex" ) );
        /*       * 1--商户       * 2--用户*/
-       newaccount.setAcRole( Long.parseLong( req.getParameter( "role" ) ) );
+        Long role=Long.valueOf( req.getParameter( "role"  ));
+       newaccount.setAcRole(role);
         UserService userService=new UserService();
       Boolean add=userService.registerAccount( newaccount );
       if(add){
           System.out.println( "注册成功" );
-          resp.sendRedirect( "index.jsp" );
+          if(role==2)
+          resp.sendRedirect( "chooseRestaurant.jsp" );
+          if(role==1)
+          {
+              HttpSession session=req.getSession();
+              session.setAttribute( "acid",newaccount.getAcId() );
+              resp.sendRedirect( "sregister.jsp" );
+          }
       }else {
           System.out.println( "注册失败" );
-          resp.sendRedirect( "register.jsp" );
+          resp.sendRedirect( "uregister.jsp" );
       }
     }
 
@@ -46,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
        // super.doGet( req, resp );
         //doPost( req,resp );
         // 重定向
-       req.getRequestDispatcher( "register.jsp" ).forward( req,resp );
+       req.getRequestDispatcher( "uregister.jsp" ).forward( req,resp );
        // resp.sendRedirect( "register" );
     }
 }
