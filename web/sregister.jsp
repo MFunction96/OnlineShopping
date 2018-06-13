@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 order-md-1 ">
-            <form name="adds" id="adds" method="post" enctype="multipart/form-data">
+            <form name="adds" id="adds" method="post" enctype="multipart/form-data" action="sregister">
                 <div class="mb-3">
                     <label for="storelogo">
                         <span style="vertical-align: inherit;">

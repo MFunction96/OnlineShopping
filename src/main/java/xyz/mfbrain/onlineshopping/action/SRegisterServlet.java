@@ -44,7 +44,7 @@ public class SRegisterServlet extends HttpServlet {
         if(add){
             System.out.println( "注册成功" );
             session.setAttribute( "stid" ,storeBean.getStId());
-            resp.sendRedirect( "chooseFood.jsp" );
+            resp.sendRedirect( "storemanager.jsp" );
 
         }else {
             System.out.println( "注册失败" );

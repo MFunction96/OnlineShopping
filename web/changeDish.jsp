@@ -1,13 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: hlys0
-  Date: 2018/6/7
-  Time: 10:32
+  Date: 2018/6/11
+  Time: 10:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,7 @@
                     <h4 class="modal-title" id="addDishLabel">添加菜品信息</h4>
                 </div>
                 <form name="addDishInfo" id="addDishInfo" method="post" action="storemanager?method=add">
-                <div class="modal-body">
+                    <div class="modal-body">
                         <div class="mb-3">
                             <label for="diImage">
                                      <span style="vertical-align: inherit;">
@@ -59,11 +59,11 @@
                             </label>
                             <input class="form-control" name="didesc" id="didesc" type="text" placeholder="请输入描述">
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="submit" class="btn btn-primary">提交</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
                 </form>
             </div>
         </div>

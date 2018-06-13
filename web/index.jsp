@@ -45,7 +45,7 @@
                             <a class="nav-link" href="login?code=1">欢迎，请登录</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register">注册</a>
+                            <a class="nav-link" href="uregister">注册</a>
                         </li>
                     </c:when>
                     <c:otherwise>
