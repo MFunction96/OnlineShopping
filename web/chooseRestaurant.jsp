@@ -24,15 +24,11 @@
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="chooseRestaurant?actiontype=show">查看商家</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="chooseFood">选择食物</a>
+                        <a class="nav-link" href="chooseRestaurant?actiontype=show">首页</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cashRegister">收银台</a>
                     </li>
-
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
@@ -66,7 +62,7 @@
     </nav>
     <section class="jumbotron text-center">
         <div class="container">
-            <img src="images/logo.png">
+            <img src="images/logo.png" width="128" height="80">
             <p class="lead text-muted">      </p>
             <form id="searchform" method="get" action="chooseRestaurant">
                 <div class="row">
@@ -97,12 +93,11 @@
                                     <input type="hidden" name="stname" id="stname" value="${store.getStName()}">
                                     <input type="hidden" name="stimg" id="stimg" value="${store.getStImage()}">
                                     <input type="hidden" name="stdesc" id="stdesc" value="${store.getStDesc()}">
+                                    <input type="hidden" name="actype" id="actype" value="showfood">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <input type=submit class="btn btn-sm btn-outline-secondary" value="看菜" ></input>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary "onclick="window.location.href='/chooseFood?stid=${store.getStId()}'">suini</button>
                                         </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </form>
@@ -116,20 +111,24 @@
     <table align="center">
         <tbody>
         <tr>
+            <td  >
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" name="btnTopPage"  id="btnTopPage" href="chooseRestaurant?actiontype=pagelist&pageNo=1" title="首页">首页</a>
+                        </li>
+                        <li class="page-item"><a class="page-link"  name="btnPreviousPage"  id="btnPreviousPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getPrePage()}" title="上页">上一页</a></li>
+                        <li class="page-item"><a class="page-link" name="btnNextPage"  id="btnNextPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getNextPage()}" title="下页">下一页</a></li>
+                        <li class="page-item"><a class="page-link" name="btnBottomPage"  id="btnBottomPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getLastPage()}" title="尾页">尾页</a></li>
+                    </ul>
+                </nav>
+            </td>
             <td  height="2">
                 <div align="left">
                     <span style="color: #000000; ">&nbsp;共&nbsp${param.totalpages}&nbsp页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span style="color: #000000; ">当前第</span>&nbsp
                     <span style="color: #000000; ">${param.pageNo}</span>&nbsp
                     <span style="color: #000000; ">页</span>
-                </div>
-            </td>
-            <td  >
-                <div align="center">
-                    <a name="btnTopPage"  id="btnTopPage" href="chooseRestaurant?actiontype=pagelist&pageNo=1" title="首页">|&lt;&lt; </a>&nbsp;
-                    <a name="btnPreviousPage"  id="btnPreviousPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getPrePage()}" title="上页"> &lt;  </a>&nbsp;
-                    <a name="btnNextPage"  id="btnNextPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getNextPage()}" title="下页">  &gt; </a>&nbsp;
-                    <a name="btnBottomPage"  id="btnBottomPage" href="chooseRestaurant?actiontype=pagelist&pageNo=${pageModel.getLastPage()}" title="尾页"> &gt;&gt;|</a>
                 </div>
             </td>
         </tr>

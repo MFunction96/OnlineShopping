@@ -35,10 +35,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user",account);
             if(account.getAcRole()==2){
                 System.out.println( "登陆成功" );
-                resp.sendRedirect("index.jsp");
+                resp.sendRedirect("chooseRestaurant?actiontype=show");
 
             }else{
-                resp.sendRedirect("index.jsp");
+                resp.sendRedirect("chooseRestaurant?actiontype=show");
             }
 
 
@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 
     private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute("user",null);
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect("chooseRestaurant?actiontype=show");
     }
 
 }
