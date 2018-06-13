@@ -53,7 +53,7 @@
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item">
-                            <a class="nav-link" href="login?code=2">${user.getAcName()}</a>
+                            <a class="nav-link" href="userInfo">${user.getAcName()}</a>
                         </li>
                     </c:otherwise>
                 </c:choose>

@@ -26,7 +26,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="addDishLabel">添加菜品信息</h4>
                 </div>
                 <form name="addDishInfo" id="addDishInfo" method="post" action="storemanager?method=add">
@@ -109,9 +108,7 @@
             </div>
         </div>
     </div>
-    <form method="get" action="shoppingCart.jsp">
-        <button>去结算</button>
-    </form>
+
 </main>
 <script type="text/javascript" src="dist/bundle.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
