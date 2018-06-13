@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                 resp.sendRedirect("chooseRestaurant?actiontype=show");
 
             }else{
-                resp.sendRedirect("chooseRestaurant?actiontype=show");
+                resp.sendRedirect("storemanager");
             }
 
 

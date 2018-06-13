@@ -1,6 +1,7 @@
 package xyz.mfbrain.onlineshopping.action;
 
 import org.apache.catalina.Session;
+import xyz.mfbrain.onlineshopping.bean.AccountBean;
 import xyz.mfbrain.onlineshopping.bean.StoreBean;
 import xyz.mfbrain.onlineshopping.biz.StoreService;
 import xyz.mfbrain.onlineshopping.utils.ImageUtil;
@@ -25,12 +26,12 @@ public class SRegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         StoreBean storeBean=new StoreBean();
-        HttpSession session=req.getSession();
+        AccountBean user=(AccountBean) req.getSession().getAttribute("user");
         storeBean.setStName( req.getParameter( "storename" ) );
         storeBean.setStPhone( req.getParameter( "phone" ) );
         storeBean.setStDesc(req.getParameter( "sdesc" ));
-        storeBean.setAcId(String.valueOf( session.getAttribute( "acid" ) ) );
-        storeBean.setStImage( req.getParameter( "storelogo" ) );
+        storeBean.setAcId(user.getAcId());
+      //  storeBean.setStImage( req.getParameter( "storelogo" ) );
 
         StoreService storeService=new StoreService();
         Boolean add=storeService.registerStore( storeBean );
@@ -43,7 +44,7 @@ public class SRegisterServlet extends HttpServlet {
         }
         if(add){
             System.out.println( "注册成功" );
-            session.setAttribute( "stid" ,storeBean.getStId());
+            req.getSession().setAttribute( "stid" ,storeBean.getStId());
             resp.sendRedirect( "storemanager.jsp" );
 
         }else {

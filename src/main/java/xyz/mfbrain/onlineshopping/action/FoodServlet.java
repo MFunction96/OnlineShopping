@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -48,10 +49,10 @@ public class FoodServlet extends HttpServlet {
        ArrayList<DishBean> dishes=dishService.getAllDish(0,s);
        req.setAttribute("dishes",dishes);
        req.setAttribute("store",store);
-       req.getRequestDispatcher( "chooseFood.jsp" ).forward( req,resp );
    }
 
-   private void addToShopCart(HttpServletRequest req, HttpServletResponse resp){
+   private void addToShopCart(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+       req.setCharacterEncoding("UTF-8");
        AccountBean user=(AccountBean) req.getSession().getAttribute("user");
        OrderList shopCart=null;
        DishorderBean newDishCart;
@@ -113,7 +114,8 @@ public class FoodServlet extends HttpServlet {
 
    }
 
-   private DishorderBean makeNewDishOrder(HttpServletRequest req,AccountBean user,String stid){
+   private DishorderBean makeNewDishOrder(HttpServletRequest req,AccountBean user,String stid) throws UnsupportedEncodingException {
+       req.setCharacterEncoding("UTF-8");
        DishorderBean newDishOrder=new DishorderBean();
        newDishOrder.setCustomerid(user.getAcId());
        newDishOrder.setAcName(user.getAcName());
@@ -123,7 +125,8 @@ public class FoodServlet extends HttpServlet {
    }
 
 
-    private OrderitemBean makeNewItem(HttpServletRequest req){
+    private OrderitemBean makeNewItem(HttpServletRequest req) throws UnsupportedEncodingException {
+        req.setCharacterEncoding("UTF-8");
         OrderitemBean newItem=new OrderitemBean();
         newItem.setItAmmount(1);
         newItem.setDiId(req.getParameter("diid"));

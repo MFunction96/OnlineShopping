@@ -40,7 +40,7 @@
                         </span></label>
                     <div class="input-group">
                         <input type="text" name="storename" class="form-control" id="storename" placeholder="请输入用户名"
-                               required="">
+                               required>
                     </div>
                     <div class="mb-3">
 
@@ -50,7 +50,7 @@
                         </span>
                         </label>
                         <input type="text" name="phone" class="form-control" id="phone" placeholder="请输入你的手机号"
-                               required="">
+                               required>
                         <div class="invalid-feedback">请输入你的手机号码</div>
 
                         <label for="sdesc">
