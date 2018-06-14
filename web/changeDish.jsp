@@ -115,6 +115,5 @@
 </main>
 <script type="text/javascript" src="dist/bundle.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
-<script>queryTime()</script>
 </body>
 </html>

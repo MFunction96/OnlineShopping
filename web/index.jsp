@@ -28,10 +28,7 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="chooseRestaurant?actiontype=show">查看商家</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="chooseFood">选择食物</a>
+                    <a class="nav-link" href="chooseRestaurant?actiontype=show">首页</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="cashRegister">收银台</a>
@@ -79,6 +76,5 @@
 </div>
 <script type="text/javascript" src="dist/bundle.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
-<script>queryTime()</script>
 </body>
 </html>

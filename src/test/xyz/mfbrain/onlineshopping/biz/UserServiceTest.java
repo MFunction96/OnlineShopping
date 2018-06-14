@@ -41,13 +41,13 @@ public class UserServiceTest {
     public void registerAccount() {
         AccountBean account=new AccountBean();
         account.setAcId(String.valueOf(UUID.randomUUID().toString()));
-        account.setAcName("Shop2");
-        account.setAcAddress("dsfadsdfhghfgfaf");
+        account.setAcName("汉堡王");
+        account.setAcAddress("五道口8号");
         account.setAcBirthday(Date.valueOf("1996-1-1"));
         account.setAcPassword("123456");
-        account.setAcPhone("1212112446312121");
+        account.setAcPhone("138258656769");
         account.setAcSex("男");
-        account.setAcRole(2);
+        account.setAcRole(1);
         assertEquals(true,ser.registerAccount(account));
     }
 

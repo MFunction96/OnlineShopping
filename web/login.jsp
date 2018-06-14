@@ -46,11 +46,6 @@
         </span>
     </label>
     <input type="password" id="password"name="password" class="form-control" placeholder="请输入密码"required>
-    <select class="custom-select d-block w-100" name="role" id="role">
-        <option value="0">角色</option>
-        <option value="1">商家</option>
-        <option value="2">订餐者</option>
-    </select>
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="rememner-me">
@@ -65,7 +60,7 @@
                 <span style="vertical-align: inherit">登录</span>
         </span>
                 </button>
-                <a href="register" style="horiz-align: right;vertical-align: center">注册</a>
+                <a href="uregister" style="horiz-align: right;vertical-align: center">注册</a>
             </form>
         </div>
     </div>
@@ -76,6 +71,5 @@
 
 <script type="text/javascript" src="dist/bundle.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
-<script>queryTime()</script>
 </body>
 </html>
