@@ -1,6 +1,7 @@
 package xyz.mfbrain.onlineshopping.action;
 
 import org.apache.catalina.Session;
+import xyz.mfbrain.onlineshopping.bean.AccountBean;
 import xyz.mfbrain.onlineshopping.bean.StoreBean;
 import xyz.mfbrain.onlineshopping.biz.StoreService;
 import xyz.mfbrain.onlineshopping.utils.ImageUtil;
@@ -26,11 +27,12 @@ public class SRegisterServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         StoreBean storeBean=new StoreBean();
         HttpSession session=req.getSession();
-        storeBean.setStName( req.getParameter( "storename" ) );
+        storeBean.setStName( req.getParameter( "storeName" ) );
         storeBean.setStPhone( req.getParameter( "phone" ) );
-        storeBean.setStDesc(req.getParameter( "sdesc" ));
-        storeBean.setAcId(String.valueOf( session.getAttribute( "acid" ) ) );
-        storeBean.setStImage( req.getParameter( "storelogo" ) );
+        storeBean.setStDesc(req.getParameter( "sDesc" ));
+        AccountBean user=(AccountBean)session.getAttribute( "user" ) ;
+        storeBean.setAcId(String.valueOf( user.getAcId() ) );
+        storeBean.setStImage( req.getParameter( "storeLogo" ) );
 
         StoreService storeService=new StoreService();
         Boolean add=storeService.registerStore( storeBean );

@@ -1,27 +1,27 @@
 $(function () {
-    $("#addu").validate({
+    $("#adds").validate({
         debug:false,
         rules:{
-            storename:{
+            storeName:{
                 required:true,
 
             },
             phone:{
                 required:true
             },
-            sdesc:{
+            sDesc:{
                 required:true
             }
         },
         messages:{
-            storename: {
+            storeName: {
                 required: "请输入店名",
 
             },
             phone:{
                 required:"请输入手机号"
             },
-            sdesc:{
+            sDesc:{
                 required:"请输入店铺简介"
             }
         }

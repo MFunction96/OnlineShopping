@@ -13,8 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body class="bg-light">
+<style>
+    body
+    {
+        background: url('images/background2.jpg');
+        background-size: cover;
+    }
+</style>
 <div class="container">
     <div class="py-5 text-center">
+        <img src="images/logo.png">
         <h2>
             <span style="vertical-align: inherit">
                 <span style="vertical-align: inherit">注册商家</span>
@@ -25,21 +33,21 @@
         <div class="col-md-12 order-md-1 ">
             <form name="adds" id="adds" method="post" enctype="multipart/form-data" action="sregister">
                 <div class="mb-3">
-                    <label for="storelogo">
+                    <label for="storeLogo">
                         <span style="vertical-align: inherit;">
                             <span style="vertical-align: inherit;">店铺标志</span>
                         </span>
                     </label>
                     <div class="col-sm-4">
-                        <input id="storelogo" name="storelogo"  type="file">
+                        <input id="storeLogo" name="storeLogo"  type="file">
                         <p >支持jpg、png格式，大小不超过5M</p>
                     </div>
-                    <label for="storename">
+                    <label for="storeName">
                         <span style="vertical-align: inherit;">
                             <span style="vertical-align: inherit;">店名</span>
                         </span></label>
                     <div class="input-group">
-                        <input type="text" name="storename" class="form-control" id="storename" placeholder="请输入用户名"
+                        <input type="text" name="storeName" class="form-control" id="storeName" placeholder="请输入用户名"
                                required="">
                     </div>
                     <div class="mb-3">
@@ -53,12 +61,12 @@
                                required="">
                         <div class="invalid-feedback">请输入你的手机号码</div>
 
-                        <label for="sdesc">
+                        <label for="sDesc">
                         <span style="vertical-align: inherit;">
                             <span style="vertical-align: inherit;">简介</span>
                         </span>
                         </label>
-                        <textarea name="sdesc" class="form-control" id="sdesc" rows="4" cols="30" required></textarea>
+                        <textarea name="sDesc" class="form-control" id="sDesc" rows="4" cols="30" required></textarea>
                     </div>
                     <hr class="mb-4">
                     <p>

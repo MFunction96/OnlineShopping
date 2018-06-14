@@ -14,8 +14,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body class="bg-light">
+<style>
+    body
+    {
+        background: url('images/background2.jpg');
+        background-size: cover;
+    }
+</style>
 <div class="container">
     <div class="py-5 text-center">
+        <img src="images/logo.png">
         <h2>
             <span style="vertical-align: inherit">
                 <span style="vertical-align: inherit">注册账户</span>
@@ -25,6 +33,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 order-md-1 ">
+
             <form name="addu" id="addu" method="post" action="uregister">
 
                 <div class="mb-3">
@@ -120,9 +129,9 @@
                                required="">
 
                     </div>
-                    <hr class="mb-4">
+                    <hr class="mb-4 container">
                     <p>
-                        <input type="submit" name="submit">
+                        <input type="submit" name="submit" class="btn btn-lg btn-primary">
                     </p>
                 </div>
             </form>

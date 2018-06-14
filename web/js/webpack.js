@@ -3,6 +3,7 @@ import "../css/signin.css"
 import "../css/register.css"
 import "../css/album.css"
 import "../css/dashboard.css"
+import "../css/site.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 global.jQuery = require("jquery")

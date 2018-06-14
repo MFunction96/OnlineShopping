@@ -9,12 +9,19 @@
 <html lang="en" class="translated-ltr">
 <head>
     <meta charset="UTF-8">
-    <title>注册-订餐者</title>
+    <title>个人信息管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
+<style>
+    body
+    {
+        background: url('images/background2.jpg');
+        background-size: cover;
+    }
+</style>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">久日</a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -41,18 +48,19 @@
                     <h1>个人信息</h1>
                     <p>
                     <div class="row">
-                        <div class="col-sm-3">用户名</div>
-                        <div class="col-sm-6">.col-sm-4</div>
-                        <div class="col-sm-2">性别</div>
-                        <div class="col-sm-1">?</div>
-                        <div class="col-sm-4">生日</div>
-                        <div class="col-sm-8">.col-sm-4</div>
-                        <div class="col-sm-4">手机</div>
-                        <div class="col-sm-8">.col-sm-4</div>
-                        <div class="col-sm-4">地址</div>
-                        <div class="col-sm-8">.col-sm-4</div>
+                        <div class="col-sm-3 bg-white">用户名：</div>
+                        <div class="col-sm-6 bg-light">久日</div>
+                        <div class="col-sm-2 bg-white ">性别：</div>
+                        <div class="col-sm-1bg-light">男</div>
+                        <div class="col-sm-4 bg-white ">生日：</div>
+                        <div class="col-sm-8 bg-light">19981028</div>
+                        <div class="col-sm-4 bg-white ">手机：</div>
+                        <div class="col-sm-8 bg-light">159****1702</div>
+                        <div class="col-sm-4 bg-white ">地址：</div>
+                        <div class="col-sm-8 bg-light">中国地质大学（北京）19号楼</div>
                     </div>
                     </p>
+                    <input type="submit" name="submit" class="btn btn-lg btn-primary" value="修改信息">
                 </div>
             </div>
         </main>
