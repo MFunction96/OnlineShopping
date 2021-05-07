@@ -26,7 +26,7 @@
     "eslint-plugin-react": "^7.8.2",
     "expose-loader": "^0.7.5",
     "file-loader": "^1.1.11",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "style-loader": "^0.21.0",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
