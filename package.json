@@ -7,7 +7,7 @@
     "bootstrap": "^4.1.1",
     "holderjs": "^2.9.4",
     "jquery": "^3.3.1",
-    "jquery-validation": "^1.17.0",
+    "jquery-validation": "^1.19.5",
     "popper.js": "^1.14.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
