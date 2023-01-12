@@ -19,7 +19,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^0.28.11",
-    "csv-loader": "^2.1.1",
+    "csv-loader": "^3.0.5",
     "eslint": "^4.19.1",
     "eslint-config-defaults": "^9.0.0",
     "eslint-loader": "^2.0.0",
